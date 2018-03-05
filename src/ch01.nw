@@ -132,6 +132,101 @@ int main()
 }
 @
 
+\section{Copy}
+
+Covers Exercises 1-6 and 1-7.
+
+<<copy.c>>=
+<<Include the standard I/O functions.>>
+
+
+int main()
+{
+    int c;
+    while ((c = getchar()) != EOF)
+        putchar(c);
+
+    return 0;
+}
+@
+
+\section{Character Counting}
+
+<<wc.c>>=
+<<Include the standard I/O functions.>>
+@
+
+<<wc.c>>=
+double char_count()
+{
+    double nc;
+    
+    for (nc = 0; getchar() != EOF; ++nc)
+        ;
+
+    return nc;
+}
+@ %def char_count
+
+
+\section{Line Counting}
+
+<<wc.c>>=
+int line_count()
+{
+    int c, nl;
+
+    nl = 0;
+    while ((c = getchar()) != EOF)
+        if (c == '\n')
+            ++nl;
+
+    return nl;
+}
+@ %def line_count
+
+\todoo{Exercise 1-8}
+\todoo{Exercise 1-9}
+\todoo{Exercise 1-10}
+
+
+\section{Word Counting}
+
+<<wc.c>>=
+#define IN  1
+#define OUT 0  
+@ %def IN
+@ %def OUT
+
+<<wc.c>>=
+int main()
+{
+    int c, nl, nw, nc, state;
+
+    state = OUT;
+    nl = nw = nc = 0;
+    while ((c = getchar()) != EOF) {
+        ++nc;
+        if (c == '\n')
+            ++nl;
+        if (c == ' ' || c == '\n' || c == '\t')
+            state = OUT;
+        else if (state == OUT) {
+          state = IN;
+          ++nw;
+        }
+    }
+
+    printf("%d %d %d\n", nl, nw, nc);
+        
+    return 0;
+}
+@
+
+\todoo{Exercise 1-11}
+\todoo{Exercise 1-12}
+
+  
 \section{Common Headers}
 
 <<Include the standard I/O functions.>>=
