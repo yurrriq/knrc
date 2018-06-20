@@ -277,3 +277,10 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+
+# ====================================================================== [ Nix ]
+
+/result
+/result-dev
+/result-docs

@@ -97,17 +97,6 @@ void print_header(char lhs[], char rhs[])
 @ %def print_header
 
 
-\subsection{Exercise 1-5}
-<<fahrcels.c>>=
-void fahrcels()
-{
-    print_header("Fahrenheit", "Celsius");
-    for (int fahr = UPPER; fahr >= LOWER; fahr -= STEP)
-        printf("| %10d | %7.1f |\n", fahr, (5.0/9.0) * (fahr-32.0));
-}
-@ %def fahrcels
-
-
 \subsection{Exercise 1-4}
 <<fahrcels.c>>=
 void celsfahr()
@@ -117,6 +106,17 @@ void celsfahr()
         printf("| %7d | %10.0f |\n", celsius, 32.0 + (9.0/5.0) * celsius);
 }
 @ %def celsfahr
+
+
+\subsection{Exercise 1-5}
+<<fahrcels.c>>=
+void fahrcels()
+{
+    print_header("Fahrenheit", "Celsius");
+    for (int fahr = UPPER; fahr >= LOWER; fahr -= STEP)
+        printf("| %10d | %7.1f |\n", fahr, (5.0/9.0) * (fahr-32.0));
+}
+@ %def fahrcels
 
 
 \subsection{The \cee{main} function}
@@ -154,13 +154,14 @@ int main()
 
 <<wc.c>>=
 <<Include the standard I/O functions.>>
+<<Include the boolean type and values.>>
 @
 
 <<wc.c>>=
 double char_count()
 {
     double nc;
-    
+
     for (nc = 0; getchar() != EOF; ++nc)
         ;
 
@@ -171,6 +172,12 @@ double char_count()
 
 \section{Line Counting}
 
+\begin{marginfigure}
+<<the character is a newline>>=
+c == '\n'
+@
+\end{marginfigure}
+
 <<wc.c>>=
 int line_count()
 {
@@ -178,15 +185,69 @@ int line_count()
 
     nl = 0;
     while ((c = getchar()) != EOF)
-        if (c == '\n')
+        if (<<the character is a newline>>)
             ++nl;
 
     return nl;
 }
 @ %def line_count
 
-\todoo{Exercise 1-8}
-\todoo{Exercise 1-9}
+\subsection{Exercise 1-8}
+
+For our purposes, whitespace is a space, tab, or newline.
+<<the character is whitespace>>=
+c == ' ' || <<the character is a newline>> || c == '\t'
+@
+
+<<wc.c>>=
+bool is_whitespace(int c)
+{
+    return (<<the character is whitespace>>);
+}
+
+
+@ %def is_whitespace
+
+
+<<wc.c>>=
+double ws_count()
+{
+    double ns = 0;
+    int c = 0;
+
+    while ((c = getchar()) != EOF)
+        if (is_whitespace(c))
+            ++ns;
+
+    return ns;
+}
+@ %def ws_count
+
+
+\subsection{Exercise 1-9}
+
+<<catblanks.c>>=
+<<Include the standard I/O functions.>>
+<<Include the boolean type and values.>>
+
+
+int main()
+{
+    int c;
+    bool prev_blank = false;
+
+    while ((c = getchar()) != EOF) {
+        if (!(prev_blank && c == ' '))
+            putchar(c);
+        prev_blank = (c == ' ');
+    }
+
+
+    return 0;
+}
+@
+
+
 \todoo{Exercise 1-10}
 
 
@@ -194,7 +255,7 @@ int line_count()
 
 <<wc.c>>=
 #define IN  1
-#define OUT 0  
+#define OUT 0
 @ %def IN
 @ %def OUT
 
@@ -207,9 +268,9 @@ int main()
     nl = nw = nc = 0;
     while ((c = getchar()) != EOF) {
         ++nc;
-        if (c == '\n')
+        if (<<the character is a newline>>)
             ++nl;
-        if (c == ' ' || c == '\n' || c == '\t')
+        if (<<the character is whitespace>>)
             state = OUT;
         else if (state == OUT) {
           state = IN;
@@ -217,8 +278,8 @@ int main()
         }
     }
 
-    printf("%d %d %d\n", nl, nw, nc);
-        
+    printf("%7d%8d%8d\n", nl, nw, nc);
+
     return 0;
 }
 @
@@ -226,8 +287,13 @@ int main()
 \todoo{Exercise 1-11}
 \todoo{Exercise 1-12}
 
-  
+
 \section{Common Headers}
+
+<<Include the boolean type and values.>>=
+#include <stdbool.h>
+@ %def bool
+
 
 <<Include the standard I/O functions.>>=
 #include <stdio.h>

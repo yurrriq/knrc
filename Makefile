@@ -5,7 +5,8 @@ CH01_SRC  := $(addsuffix .c,$(addprefix src/,\
 	hello\
 	fahrcels\
 	copy\
-  wc\
+	catblanks\
+	wc\
 	))
 C_SRC  := ${CH01_SRC}
 PDF    := $(patsubst src/%.nw,docs/%.pdf,${NW_SRC})
@@ -19,7 +20,25 @@ endif
 latexmk_flags += -cd -pdf
 
 
-.PHONY: all check clean
+.PHONY: all
+all: bin dev docs
+
+.PHONY: bin
+bin: ${BIN}
+
+.PHONY: dev
+dev: ${CH01_SRC}
+
+.PHONY: docs
+docs: ${PDF}
+
+
+.PHONY: install
+install:
+	install -m755 -Dt "$$out/bin/" ${BIN}
+	install -m644 -Dt "$$docs/" ${PDF}
+	install -m644 -Dt "$$dev/src/" ${C_SRC}
+
 
 .SUFFIXES: .tex .pdf
 
@@ -29,16 +48,10 @@ latexmk_flags += -cd -pdf
 	rm $*.{bib,c} docs/preamble.tex
 
 
-all: ${CH01_SRC} ${BIN} ${PDF}
-
-
-check:
-	@ bin/check
-
-
+.PHONY: clean
 clean:
 	$(foreach pdf,${PDF},latexmk ${latexmk_flags} -f -C ${pdf};)
-	rm -fR ${BIN} ${C_SRC}{~,} docs/_minted-*
+	rm -fR ${BIN} ${C_SRC}{~,} docs/_minted-* result*
 
 
 docs/%.tex: src/%.nw
@@ -53,3 +66,11 @@ bin/%: src/%.c
 ${CH01_SRC}: src/ch01.nw
 	notangle -R$(notdir $@) $< ${cpif} $@
 	indent -kr -nut $@
+
+
+.PHONY: nix-build
+nix-build:
+	nix-build -A all
+	install -m755 -o $$(id -u) -g $$(id -g) -Dt bin result/bin/*
+	install -m644 -o $$(id -u) -g $$(id -g) -Dt docs result-docs/*.pdf
+	install -m644 -o $$(id -u) -g $$(id -g) -Dt src result-dev/src/*

@@ -15,19 +15,19 @@ void print_header(char lhs[], char rhs[])
     puts("|");
 }
 
-void fahrcels()
-{
-    print_header("Fahrenheit", "Celsius");
-    for (int fahr = UPPER; fahr >= LOWER; fahr -= STEP)
-        printf("| %10d | %7.1f |\n", fahr, (5.0 / 9.0) * (fahr - 32.0));
-}
-
 void celsfahr()
 {
     print_header("Celsius", "Fahrenheit");
     for (int celsius = 0; celsius <= 300; celsius += 20)
         printf("| %7d | %10.0f |\n", celsius,
                32.0 + (9.0 / 5.0) * celsius);
+}
+
+void fahrcels()
+{
+    print_header("Fahrenheit", "Celsius");
+    for (int fahr = UPPER; fahr >= LOWER; fahr -= STEP)
+        printf("| %10d | %7.1f |\n", fahr, (5.0 / 9.0) * (fahr - 32.0));
 }
 
 int main()

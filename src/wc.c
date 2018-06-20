@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 double char_count()
 {
     double nc;
@@ -18,6 +19,24 @@ int line_count()
             ++nl;
 
     return nl;
+}
+
+bool is_whitespace(int c)
+{
+    return (c == ' ' || c == '\n' || c == '\t');
+}
+
+
+double ws_count()
+{
+    double ns = 0;
+    int c = 0;
+
+    while ((c = getchar()) != EOF)
+        if (is_whitespace(c))
+            ++ns;
+
+    return ns;
 }
 
 #define IN  1
@@ -40,7 +59,7 @@ int main()
         }
     }
 
-    printf("%d %d %d\n", nl, nw, nc);
+    printf("%7d%8d%8d\n", nl, nw, nc);
 
     return 0;
 }
