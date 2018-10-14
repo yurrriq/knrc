@@ -1,12 +1,14 @@
 let
+
   fetchNixpkgs =
     { owner, repo, rev, sha256, ... }:
     builtins.fetchTarball {
-      url = "https://github.com/${owner}/${repo}/archive/${rev}.tar.gz";
+      url = "https://github.com/${owner}/${repo}/tarball/${rev}";
       inherit sha256;
     };
 
   importJSON = path: builtins.fromJSON (builtins.readFile path);
+
 in
 
 { nixpkgs ? fetchNixpkgs (importJSON ./nixpkgs-src.json) }:
@@ -54,5 +56,7 @@ stdenv.mkDerivation {
   meta = with stdenv.lib; {
     description = "Working through the K&R C book";
     homepage = https://github.com/yurrriq/knrc;
+    license = licenses.wtfpl;
+    maintainers = with maintainers; [ yurrriq ];
   };
 }
