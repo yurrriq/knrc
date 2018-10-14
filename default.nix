@@ -37,6 +37,8 @@ stdenv.mkDerivation {
   name = "knrc";
   src = ./.;
 
+  makeFlags = "-B";
+
   outputs = [ "out" "docs" "dev" ];
 
   FONTCONFIG_FILE = makeFontsConf {

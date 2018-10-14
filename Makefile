@@ -6,6 +6,7 @@ CH01_SRC := $(addsuffix .c,$(addprefix src/,\
 	fahrcels\
 	copy\
 	catblanks\
+	unambiguous\
 	wc\
 	))
 C_SRC    := ${CH01_SRC}
@@ -62,7 +63,6 @@ docs/%.tex: src/%.nw
 bin/%: src/%.c
 	@ mkdir -p $(dir $@)
 	${CC} ${CFLAGS} -o $@ $<
-
 
 ${CH01_SRC}: src/ch01.nw
 	notangle -R$(notdir $@) $< ${cpif} $@

@@ -136,6 +136,17 @@ int main()
 
 Covers Exercises 1-6 and 1-7.
 
+
+\begin{marginfigure}
+<<For each character [[c]] until [[EOF]]>>=
+while ((c = getchar()) != EOF)
+@
+
+<<Print the character.>>=
+putchar(c);
+@
+\end{marginfigure}
+
 <<copy.c>>=
 <<Include the standard I/O functions.>>
 
@@ -143,8 +154,8 @@ Covers Exercises 1-6 and 1-7.
 int main()
 {
     int c;
-    while ((c = getchar()) != EOF)
-        putchar(c);
+    <<For each character [[c]] until [[EOF]]>>
+        <<Print the character.>>
 
     return 0;
 }
@@ -184,7 +195,7 @@ int line_count()
     int c, nl;
 
     nl = 0;
-    while ((c = getchar()) != EOF)
+    <<For each character [[c]] until [[EOF]]>>
         if (<<the character is a newline>>)
             ++nl;
 
@@ -194,9 +205,17 @@ int line_count()
 
 \subsection{Exercise 1-8}
 
+
+\begin{marginfigure}
+<<the character is a tab>>=
+c == '\t'
+@
+\end{marginfigure}
+
+
 For our purposes, whitespace is a space, tab, or newline.
 <<the character is whitespace>>=
-c == ' ' || <<the character is a newline>> || c == '\t'
+c == ' ' || <<the character is a newline>> || <<the character is a tab>>
 @
 
 <<wc.c>>=
@@ -215,7 +234,7 @@ double ws_count()
     double ns = 0;
     int c = 0;
 
-    while ((c = getchar()) != EOF)
+    <<For each character [[c]] until [[EOF]]>>
         if (is_whitespace(c))
             ++ns;
 
@@ -236,9 +255,9 @@ int main()
     int c;
     bool prev_blank = false;
 
-    while ((c = getchar()) != EOF) {
+    <<For each character [[c]] until [[EOF]]>> {
         if (!(prev_blank && c == ' '))
-            putchar(c);
+            <<Print the character.>>
         prev_blank = (c == ' ');
     }
 
@@ -248,7 +267,54 @@ int main()
 @
 
 
-\todoo{Exercise 1-10}
+\subsection{Exercise 1-10}
+
+<<unambiguous.c>>=
+<<Include the standard I/O functions.>>
+
+
+int main()
+{
+    int c;
+
+    <<For each character [[c]] until [[EOF]]>> {
+        if (<<the character is a tab>>)
+            <<Print an escaped tab.>>
+        else if (<<the character is a backspace>>)
+            <<Print an escaped backspace.>>
+        else if (<<the character is a backslash>>)
+            <<Print an escaped backslash.>>
+        else
+            <<Print the character.>>
+    }
+
+
+    return 0;
+}
+@
+
+
+\begin{marginfigure}
+<<Print an escaped tab.>>=
+fputs("\\t", stdout);
+@
+
+<<the character is a backspace>>=
+c == '\b'
+@
+
+<<Print an escaped backspace.>>=
+fputs("\\b", stdout);
+@
+
+<<the character is a backslash>>=
+c == '\\'
+@
+
+<<Print an escaped backslash.>>=
+fputs("\\\\", stdout);
+@
+\end{marginfigure}
 
 
 \section{Word Counting}
@@ -266,7 +332,7 @@ int main()
 
     state = OUT;
     nl = nw = nc = 0;
-    while ((c = getchar()) != EOF) {
+    <<For each character [[c]] until [[EOF]]>> {
         ++nc;
         if (<<the character is a newline>>)
             ++nl;
@@ -297,9 +363,11 @@ int main()
 
 <<Include the standard I/O functions.>>=
 #include <stdio.h>
+@ %def fputs
 @ %def printf
 @ %def putchar
 @ %def puts
+@ %def stdout
 
 <<Include the standard string functions.>>=
 #include <string.h>
