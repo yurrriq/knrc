@@ -1,2 +1,9 @@
-# knrc
-:book: In which I work through exercises in "The C Programming Lanaguage" by Brian W. Kernighan and Dennis M. Ritchie
+# K&R C
+*In which I work through exercises in [The C Programming Lanaguage][1]
+by [Brian W. Kernighan][2] and [Dennis M. Ritchie][3]*
+
+
+<!-- Named Links -->
+[1]: https://wikipedia.org/wiki/The_C_Programming_Language
+[2]: https://en.wikipedia.org/wiki/Brian_Kernighan
+[3]: https://wikipedia.org/wiki/Dennis_Ritchie
