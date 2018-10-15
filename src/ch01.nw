@@ -366,7 +366,38 @@ int main()
 @
 
 
-\todoo{Exercise 1-12}
+\subsection{Exercise 1-12}
+
+<<words.c>>=
+<<Include the standard I/O functions.>>
+
+
+#define IN    1
+#define OUT   0
+
+
+int main()
+{
+    int c, state;
+
+    state = OUT;
+    <<For each character [[c]] until [[EOF]]>> {
+        if (<<the character is whitespace>>) {
+	    if (state == IN)
+	        putchar('\n');
+            state = OUT;
+	} else {
+            state = IN;
+	}
+
+	if (state == IN)
+	    putchar(c);
+    }
+
+
+    return 0;
+}
+@
 
 
 \section{Common Headers}
