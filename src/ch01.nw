@@ -1,4 +1,3 @@
-% -*- ess-noweb-code-mode: c-mode; -*-
 \documentclass[nobib]{tufte-handout}
 
 
@@ -269,50 +268,66 @@ int main()
 
 \subsection{Exercise 1-10}
 
+\begin{marginfigure}
 <<unambiguous.c>>=
 <<Include the standard I/O functions.>>
 
 
 int main()
 {
-    int c;
+@
+\end{marginfigure}
+
+Process each character \cee{c}.
+<<unambiguous.c>>=
+int c;
 
     <<For each character [[c]] until [[EOF]]>> {
-        if (<<the character is a tab>>)
-            <<Print an escaped tab.>>
-        else if (<<the character is a backspace>>)
-            <<Print an escaped backspace.>>
-        else if (<<the character is a backslash>>)
-            <<Print an escaped backslash.>>
-        else
-            <<Print the character.>>
-    }
-
-
-    return 0;
-}
 @
 
+Replace each tab by \cee{\t}.
+<<unambiguous.c>>=
+        if (<<the character is a tab>>)
+            fputs("\\t", stdout);
+@
 
 \begin{marginfigure}
-<<Print an escaped tab.>>=
-fputs("\\t", stdout);
-@
-
 <<the character is a backspace>>=
 c == '\b'
 @
+\end{marginfigure}
 
-<<Print an escaped backspace.>>=
-fputs("\\b", stdout);
+Replace each backspace by \cee{\b}.
+<<unambiguous.c>>=
+        else if (<<the character is a backspace>>)
+	    fputs("\\b", stdout);
 @
 
+\begin{marginfigure}
 <<the character is a backslash>>=
 c == '\\'
 @
+\end{marginfigure}
 
-<<Print an escaped backslash.>>=
-fputs("\\\\", stdout);
+Replace each backslash by \cee{\\}.
+<<unambiguous.c>>=
+        else if (<<the character is a backslash>>)
+            fputs("\\\\", stdout);
+@
+
+Otherwise print the character unchanged.
+<<unambiguous.c>>=
+        else
+            <<Print the character.>>
+@
+
+\begin{marginfigure}
+Finally, close the \cee{while} loop and exit.
+<<unambiguous.c>>=
+    }
+
+    return 0;
+}
 @
 \end{marginfigure}
 
@@ -350,7 +365,7 @@ int main()
 }
 @
 
-\todoo{Exercise 1-11}
+
 \todoo{Exercise 1-12}
 
 
