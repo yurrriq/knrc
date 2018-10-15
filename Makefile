@@ -9,6 +9,7 @@ CH01_SRC := $(addsuffix .c,$(addprefix src/,\
 	unambiguous\
 	wc\
 	words\
+	wordlength\
 	))
 C_SRC    := ${CH01_SRC}
 PDF      := $(patsubst src/%.nw,docs/%.pdf,${NW_SRC})

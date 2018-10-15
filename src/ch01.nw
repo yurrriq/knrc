@@ -300,7 +300,7 @@ c == '\b'
 Replace each backspace by \cee{\b}.
 <<unambiguous.c>>=
         else if (<<the character is a backspace>>)
-	    fputs("\\b", stdout);
+           fputs("\\b", stdout);
 @
 
 \begin{marginfigure}
@@ -383,21 +383,108 @@ int main()
     state = OUT;
     <<For each character [[c]] until [[EOF]]>> {
         if (<<the character is whitespace>>) {
-	    if (state == IN)
-	        putchar('\n');
+            if (state == IN)
+                putchar('\n');
             state = OUT;
-	} else {
+        } else {
             state = IN;
-	}
+        }
 
-	if (state == IN)
-	    putchar(c);
+        if (state == IN)
+            putchar(c);
     }
 
 
     return 0;
 }
 @
+
+
+\subsection{Exercise 1-13}
+
+\todoo{Vertical histogram}
+
+<<wordlength.c>>=
+<<Include the standard I/O functions.>>
+
+
+#define IN    1
+#define OUT   0
+
+#define MAX_WORD_LENGTH 10
+#define TERM_WIDTH 80
+
+
+int main()
+{
+    int c, state, wl;
+    int length[MAX_WORD_LENGTH+1];
+
+    for (int i = 0; i <= MAX_WORD_LENGTH; ++i)
+        length[i] = 0;
+
+    state = OUT;
+    wl = 0;
+    <<For each character [[c]] until [[EOF]]>> {
+        if (<<the character is whitespace>>) {
+            if (state == IN) {
+                state = OUT;
+                ++length[wl <= MAX_WORD_LENGTH ? wl-1 : MAX_WORD_LENGTH];
+            }
+        } else {
+            if (state == OUT) {
+                state = IN;
+                wl = 0;
+            }
+            ++wl;
+        }
+    }
+
+    for (int j = 0; j <= MAX_WORD_LENGTH; ++j) {
+        if (j == MAX_WORD_LENGTH)
+            printf(">%d: ", MAX_WORD_LENGTH);
+        else
+            printf(" %2d: ", j+1);
+
+        for (int k = 0; k < length[j]; ++k)
+            putchar('#');
+        putchar('\n');
+    }
+
+
+    return 0;
+}
+@
+
+
+\todoo{Exercise 1-14}
+
+
+\todoo{Exercise 1-16}
+
+
+\todoo{Exercise 1-17}
+
+
+\todoo{Exercise 1-18}
+
+
+\todoo{Exercise 1-19}
+
+
+\todoo{Exercise 1-20}
+
+
+\todoo{Exercise 1-21}
+
+
+\todoo{Exercise 1-22}
+
+
+\todoo{Exercise 1-23}
+
+
+\todoo{Exercise 1-24}
 
 
 \section{Common Headers}
