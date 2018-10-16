@@ -400,6 +400,8 @@ int main()
 @
 
 
+\section{Arrays}
+
 \subsection{Exercise 1-13}
 
 \todoo{Vertical histogram}
@@ -521,11 +523,15 @@ int main()
 @
 
 
+\section{Functions}
+
 \todoo{Exercise 1-15}
 
 
 \todoo{Exercise 1-16}
 
+
+\section{Character Arrays}
 
 \todoo{Exercise 1-17}
 
@@ -535,6 +541,8 @@ int main()
 
 \todoo{Exercise 1-19}
 
+
+\section{External Variables and Scope}
 
 \todoo{Exercise 1-20}
 
