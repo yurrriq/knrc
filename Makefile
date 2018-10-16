@@ -10,6 +10,7 @@ CH01_SRC := $(addsuffix .c,$(addprefix src/,\
 	wc\
 	words\
 	wordlength\
+	charfreq\
 	))
 C_SRC    := ${CH01_SRC}
 PDF      := $(patsubst src/%.nw,docs/%.pdf,${NW_SRC})
