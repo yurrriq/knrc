@@ -11,6 +11,7 @@ CH01_SRC := $(addsuffix .c,$(addprefix src/,\
 	words\
 	wordlength\
 	charfreq\
+	longestline\
 	))
 C_SRC    := ${CH01_SRC}
 PDF      := $(patsubst src/%.nw,docs/%.pdf,${NW_SRC})
