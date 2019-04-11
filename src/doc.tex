@@ -1,0 +1,41 @@
+\documentclass[nobib]{tufte-book}
+\input{preamble.tex}
+%% \usepackage[xindy,nopostdot]{glossaries}
+%% \makeglossaries
+%% \input{glossary}
+%% \renewcommand*{\glstextformat}[1]{\textsl{#1}}
+\hypersetup{
+  pdffitwindow=true,
+  pdfstartview={FitH},
+  pdftitle={The C Programming Language},
+  pdfauthor={Eric Bailey <eric@ericb.me>},
+  pdfsubject={Exercises from the K&R C book}
+  pdfkeywords={UNIX, C language, learning},
+  colorlinks=true,
+  linkcolor=ErlangRed,
+  urlcolor=ErlangRed
+}
+\title{\Huge The C Programming Language}
+\date{%
+  March 4, 2018
+  \thanks{Last updated \today}
+}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\input{allcode.tex}
+\newpage
+%% \begin{multicols}{2}[\chapter*{Chunks}]
+\chapter*{Chunks}
+\nowebchunks
+%% \end{multicols}
+%% \chapter*{Index}
+\begin{multicols}{2}[\chapter*{Index}]
+  \nowebindex
+\end{multicols}
+%% \bibliography{knrc}
+%% \bibliographystyle{plainnat}
+%% \newpage
+%% \listoftodos[To-Do]
+\end{document}

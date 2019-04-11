@@ -1,3 +1,2 @@
 Makefile linguist-detectable=false
-docs/noweb.sty linguist-vendored
 latexmkrc linguist-detectable=false

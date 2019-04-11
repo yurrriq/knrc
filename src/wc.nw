@@ -1,0 +1,97 @@
+\section{Character Counting}
+
+<<wc.c>>=
+<<Include the standard I/O functions.>>
+<<Include the boolean type and values.>>
+@
+
+
+<<wc.c>>=
+double char_count()
+{
+    double nc;
+
+    for (nc = 0; getchar() != EOF; ++nc)
+	;
+
+    return nc;
+}
+@ %def char_count
+
+
+\section{Line Counting}
+
+<<wc.c>>=
+int line_count()
+{
+    int c, nl;
+
+    nl = 0;
+    <<For each character [[c]] until [[EOF]]>>
+	if (<<the character is a newline>>)
+	    ++nl;
+
+    return nl;
+}
+@ %def line_count
+
+
+\subsection{Exercise 1-8}
+
+<<wc.c>>=
+bool is_whitespace(int c)
+{
+    return (<<the character is whitespace>>);
+}
+
+
+@ %def is_whitespace
+
+
+<<wc.c>>=
+double ws_count()
+{
+    double ns = 0;
+    int c = 0;
+
+    <<For each character [[c]] until [[EOF]]>>
+	if (is_whitespace(c))
+	    ++ns;
+
+    return ns;
+}
+@ %def ws_count
+
+
+\section{Word Counting}
+
+<<wc.c>>=
+#define IN  1
+#define OUT 0
+@ %def IN
+@ %def OUT
+
+<<wc.c>>=
+int main()
+{
+    int c, nl, nw, nc, state;
+
+    state = OUT;
+    nl = nw = nc = 0;
+    <<For each character [[c]] until [[EOF]]>> {
+	++nc;
+	if (<<the character is a newline>>)
+	    ++nl;
+	if (<<the character is whitespace>>)
+	    state = OUT;
+	else if (state == OUT) {
+	  state = IN;
+	  ++nw;
+	}
+    }
+
+    printf("%7d%8d%8d\n", nl, nw, nc);
+
+    return 0;
+}
+@

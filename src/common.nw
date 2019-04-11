@@ -1,0 +1,62 @@
+\chapter*{Common}
+
+\section{Headers}
+
+<<Include the boolean type and values.>>=
+#include <stdbool.h>
+@ %def bool
+
+
+<<Include the standard I/O functions.>>=
+#include <stdio.h>
+@ %def fputs
+@ %def printf
+@ %def putchar
+@ %def puts
+@ %def stdout
+
+
+<<Include the standard string functions.>>=
+#include <string.h>
+@ %def strlen
+
+
+\section{Patterns}
+
+\subsection{Control}
+
+<<For each character [[c]] until [[EOF]]>>=
+while ((c = getchar()) != EOF)
+@
+
+
+\subsection{I/O}
+
+<<Print the character.>>=
+putchar(c);
+@
+
+
+\subsection{Predicates}
+
+For our purposes, whitespace is a space, tab, or newline.
+
+<<the character is whitespace>>=
+c == ' ' || <<the character is a newline>> || <<the character is a tab>>
+@
+
+<<the character is a newline>>=
+c == '\n'
+@
+
+<<the character is a tab>>=
+c == '\t'
+@
+
+<<the character is a backspace>>=
+c == '\b'
+@
+
+<<the character is a backslash>>=
+c == '\\'
+@

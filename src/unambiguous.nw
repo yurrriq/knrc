@@ -1,0 +1,64 @@
+\subsection{Exercise 1-10}
+
+\begin{marginfigure}
+<<unambiguous.c>>=
+<<Include the standard I/O functions.>>
+
+
+int main()
+{
+@
+\end{marginfigure}
+
+
+Process each character \cee{c}.
+
+<<unambiguous.c>>=
+int c;
+
+    <<For each character [[c]] until [[EOF]]>> {
+@
+
+
+Replace each tab by \cee{\t}.
+
+<<unambiguous.c>>=
+        if (<<the character is a tab>>)
+            fputs("\\t", stdout);
+@
+
+
+Replace each backspace by \cee{\b}.
+
+<<unambiguous.c>>=
+        else if (<<the character is a backspace>>)
+           fputs("\\b", stdout);
+@
+
+
+Replace each backslash by \cee{\\}.
+
+<<unambiguous.c>>=
+        else if (<<the character is a backslash>>)
+            fputs("\\\\", stdout);
+@
+
+
+Otherwise print the character unchanged.
+
+<<unambiguous.c>>=
+        else
+            <<Print the character.>>
+@
+
+
+\begin{marginfigure}
+  Finally, close the \cee{while} loop and exit.
+
+<<unambiguous.c>>=
+    }
+
+    return 0;
+}
+@
+\end{marginfigure}

@@ -18,7 +18,7 @@ void print_header(char lhs[], char rhs[])
 void celsfahr()
 {
     print_header("Celsius", "Fahrenheit");
-    for (int celsius = 0; celsius <= 300; celsius += 20)
+    for (int celsius = LOWER; celsius <= UPPER; celsius += STEP)
         printf("| %7d | %10.0f |\n", celsius,
                32.0 + (9.0 / 5.0) * celsius);
 }

@@ -1,0 +1,24 @@
+\subsection{Exercise 1-9}
+
+<<catblanks.c>>=
+<<Include the standard I/O functions.>>
+<<Include the boolean type and values.>>
+@
+
+
+<<catblanks.c>>=
+int main()
+{
+    int c;
+    bool prev_blank = false;
+
+    <<For each character [[c]] until [[EOF]]>> {
+	if (!(prev_blank && c == ' '))
+	    <<Print the character.>>
+	prev_blank = (c == ' ');
+    }
+
+
+    return 0;
+}
+@

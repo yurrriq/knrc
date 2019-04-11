@@ -1,0 +1,17 @@
+\section{Copy}
+\marginnote{Covers Exercises 1-6 and 1-7.}
+
+<<copy.c>>=
+<<Include the standard I/O functions.>>
+@
+
+<<copy.c>>=
+int main()
+{
+    int c;
+    <<For each character [[c]] until [[EOF]]>>
+        <<Print the character.>>
+
+    return 0;
+}
+@

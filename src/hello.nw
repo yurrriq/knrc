@@ -1,0 +1,20 @@
+\chapter{Chapter One}
+
+\section{Hello, world!}
+\marginnote{Covers Exercises 1-1 and 1-2.}
+
+Include the standard I/O functions, notably [[printf]].
+
+<<hello.c>>=
+<<Include the standard I/O functions.>>
+@
+
+
+Define a [[main]] function that prints [[Hello, world!]].
+
+<<hello.c>>=
+int main()
+{
+    printf("Hello, world!\n");
+}
+@
