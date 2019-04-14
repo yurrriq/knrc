@@ -26,7 +26,9 @@ with import nixpkgs {
       xelatex-noweb = (super.texlive.combine {
         inherit (super) noweb;
         inherit (super.texlive) scheme-small
+          datetime
           dirtytalk
+          fmtcount
           framed
           fvextra
           hardwrap
