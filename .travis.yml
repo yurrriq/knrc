@@ -9,6 +9,6 @@ jobs:
       script: nix-build
     - stage: "Generate Documentation"
       name: "Weave PDF"
-      script: nix-build docs
+      script: nix-build -A docs
     - name: "Generate documentation"
-      script: doxygen
+      script: nix-shell --run doxygen
