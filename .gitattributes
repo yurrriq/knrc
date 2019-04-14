@@ -1,3 +1,4 @@
 Makefile linguist-detectable=false
 latexmkrc linguist-detectable=false
 src/allcode.tex linguist-generated
+*.h linguist-language=C
