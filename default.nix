@@ -51,7 +51,7 @@ stdenv.mkDerivation rec {
   name = "${pname}-${version}";
   src = ./.;
 
-  makeFlags = "-B";
+  # makeFlags = "-B";
 
   outputs = [ "out" "docs" "dev" ];
 
