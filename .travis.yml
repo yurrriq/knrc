@@ -1,0 +1,14 @@
+language: nix
+nix: 2.2.1
+jobs:
+  include:
+    - stage: Build
+      name: "Tangle source code"
+      script: nix-build -A dev
+    - name: "Build binaries"
+      script: nix-build
+    - stage: "Generate Documentation"
+      name: "Weave PDF"
+      script: nix-build docs
+    - name: "Generate documentation"
+      script: doxygen
