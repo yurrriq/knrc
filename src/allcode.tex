@@ -1,4 +1,202 @@
-\nwfilename{src/wc.nw}\nwbegindocs{0}\section{Character Counting}
+\nwfilename{src/hello.nw}\nwbegindocs{0}\chapter{Chapter One}
+
+\section{Hello, world!}
+\marginnote{Covers Exercises 1-1 and 1-2.}
+
+Include the standard I/O functions, notably {\tt{}\protect\nwindexuse{printf}{printf}{NW2NYgKa-3vUi9y-1}printf}.
+
+\nwenddocs{}\nwbegincode{1}\sublabel{NWprjBA-1NFt3F-1}\nwmargintag{{\nwtagstyle{}\subpageref{NWprjBA-1NFt3F-1}}}\moddef{hello.c~{\nwtagstyle{}\subpageref{NWprjBA-1NFt3F-1}}}\endmoddef\nwalsodefined{\\{NWprjBA-1NFt3F-2}}\nwnotused{hello.c}
+\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
+\nwendcode{}\nwbegindocs{2}\nwdocspar
+
+
+Define a {\tt{}main} function that prints {\tt{}Hello,\ world!}.
+
+\nwenddocs{}\nwbegincode{3}\sublabel{NWprjBA-1NFt3F-2}\nwmargintag{{\nwtagstyle{}\subpageref{NWprjBA-1NFt3F-2}}}\moddef{hello.c~{\nwtagstyle{}\subpageref{NWprjBA-1NFt3F-1}}}\plusendmoddef
+int main()
+\{
+    printf("Hello, world!\\n");
+\}
+\nwidentuses{\\{{printf}{printf}}}\nwindexuse{printf}{printf}{NWprjBA-1NFt3F-2}\nwendcode{}\nwbegindocs{4}\nwdocspar
+\nwenddocs{}\nwfilename{src/fahrcels.nw}\nwbegindocs{0}\section{Fahrenheit-Celsius table}
+\marginnote{Covers Exercises 1-3, 1-4, and 1-5.}
+
+\nwenddocs{}\nwbegincode{1}\sublabel{NW4GWIzp-1OV3uf-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\endmoddef\nwalsodefined{\\{NW4GWIzp-1OV3uf-2}\\{NW4GWIzp-1OV3uf-3}\\{NW4GWIzp-1OV3uf-4}\\{NW4GWIzp-1OV3uf-5}\\{NW4GWIzp-1OV3uf-6}}\nwnotused{fahrcels.c}
+\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
+\LA{}Include the standard string functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3aEjMV-1}}\RA{}
+\nwendcode{}\nwbegindocs{2}\nwdocspar
+
+
+Declare some useful constants.
+
+\nwenddocs{}\nwbegincode{3}\sublabel{NW4GWIzp-1OV3uf-2}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-2}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
+#define LOWER 0
+#define UPPER 300
+#define STEP  20
+\nwindexdefn{LOWER}{LOWER}{NW4GWIzp-1OV3uf-2}\eatline
+\nwindexdefn{UPPER}{UPPER}{NW4GWIzp-1OV3uf-2}\eatline
+\nwindexdefn{STEP}{STEP}{NW4GWIzp-1OV3uf-2}\eatline
+\nwidentdefs{\\{{LOWER}{LOWER}}\\{{STEP}{STEP}}\\{{UPPER}{UPPER}}}\nwendcode{}\nwbegindocs{4}\nwdocspar
+
+\subsection{Exercise 1-3}
+
+\nwenddocs{}\nwbegincode{5}\sublabel{NW4GWIzp-1OV3uf-3}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-3}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
+void print_header(char lhs[], char rhs[])
+\{
+    printf("| %s | %s |\\n", lhs, rhs);
+    putchar('|');
+    for (int i = -2; i < (int)strlen(lhs); ++i)
+        putchar('-');
+    putchar('+');
+    for (int i = -2; i < (int)strlen(rhs); ++i)
+        putchar('-');
+    puts("|");
+\}
+\nwindexdefn{print{\char95}header}{print:unheader}{NW4GWIzp-1OV3uf-3}\eatline
+\nwidentdefs{\\{{print{\char95}header}{print:unheader}}}\nwidentuses{\\{{printf}{printf}}\\{{putchar}{putchar}}\\{{puts}{puts}}\\{{strlen}{strlen}}}\nwindexuse{printf}{printf}{NW4GWIzp-1OV3uf-3}\nwindexuse{putchar}{putchar}{NW4GWIzp-1OV3uf-3}\nwindexuse{puts}{puts}{NW4GWIzp-1OV3uf-3}\nwindexuse{strlen}{strlen}{NW4GWIzp-1OV3uf-3}\nwendcode{}\nwbegindocs{6}\nwdocspar
+
+\subsection{Exercise 1-4}
+
+\nwenddocs{}\nwbegincode{7}\sublabel{NW4GWIzp-1OV3uf-4}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-4}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
+void celsfahr()
+\{
+    print_header("Celsius", "Fahrenheit");
+    for (int celsius = LOWER; celsius <= UPPER; celsius += STEP)
+        printf("| %7d | %10.0f |\\n", celsius, 32.0 + (9.0/5.0) * celsius);
+\}
+\nwindexdefn{celsfahr}{celsfahr}{NW4GWIzp-1OV3uf-4}\eatline
+\nwidentdefs{\\{{celsfahr}{celsfahr}}}\nwidentuses{\\{{LOWER}{LOWER}}\\{{print{\char95}header}{print:unheader}}\\{{printf}{printf}}\\{{STEP}{STEP}}\\{{UPPER}{UPPER}}}\nwindexuse{LOWER}{LOWER}{NW4GWIzp-1OV3uf-4}\nwindexuse{print{\char95}header}{print:unheader}{NW4GWIzp-1OV3uf-4}\nwindexuse{printf}{printf}{NW4GWIzp-1OV3uf-4}\nwindexuse{STEP}{STEP}{NW4GWIzp-1OV3uf-4}\nwindexuse{UPPER}{UPPER}{NW4GWIzp-1OV3uf-4}\nwendcode{}\nwbegindocs{8}\nwdocspar
+
+\subsection{Exercise 1-5}
+
+\nwenddocs{}\nwbegincode{9}\sublabel{NW4GWIzp-1OV3uf-5}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-5}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
+void fahrcels()
+\{
+    print_header("Fahrenheit", "Celsius");
+    for (int fahr = UPPER; fahr >= LOWER; fahr -= STEP)
+        printf("| %10d | %7.1f |\\n", fahr, (5.0/9.0) * (fahr-32.0));
+\}
+\nwindexdefn{fahrcels}{fahrcels}{NW4GWIzp-1OV3uf-5}\eatline
+\nwidentdefs{\\{{fahrcels}{fahrcels}}}\nwidentuses{\\{{LOWER}{LOWER}}\\{{print{\char95}header}{print:unheader}}\\{{printf}{printf}}\\{{STEP}{STEP}}\\{{UPPER}{UPPER}}}\nwindexuse{LOWER}{LOWER}{NW4GWIzp-1OV3uf-5}\nwindexuse{print{\char95}header}{print:unheader}{NW4GWIzp-1OV3uf-5}\nwindexuse{printf}{printf}{NW4GWIzp-1OV3uf-5}\nwindexuse{STEP}{STEP}{NW4GWIzp-1OV3uf-5}\nwindexuse{UPPER}{UPPER}{NW4GWIzp-1OV3uf-5}\nwendcode{}\nwbegindocs{10}\nwdocspar
+
+\subsection{The \cee{main} function}
+
+\nwenddocs{}\nwbegincode{11}\sublabel{NW4GWIzp-1OV3uf-6}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-6}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
+int main()
+\{
+    fahrcels();
+    puts("\\n");
+    celsfahr();
+
+    return 0;
+\}
+\nwidentuses{\\{{celsfahr}{celsfahr}}\\{{fahrcels}{fahrcels}}\\{{puts}{puts}}}\nwindexuse{celsfahr}{celsfahr}{NW4GWIzp-1OV3uf-6}\nwindexuse{fahrcels}{fahrcels}{NW4GWIzp-1OV3uf-6}\nwindexuse{puts}{puts}{NW4GWIzp-1OV3uf-6}\nwendcode{}\nwbegindocs{12}\nwdocspar
+\nwenddocs{}\nwfilename{src/copy.nw}\nwbegindocs{0}\section{Copy}
+\marginnote{Covers Exercises 1-6 and 1-7.}
+
+\nwenddocs{}\nwbegincode{1}\sublabel{NWeGZ5h-3Ma0FV-1}\nwmargintag{{\nwtagstyle{}\subpageref{NWeGZ5h-3Ma0FV-1}}}\moddef{copy.c~{\nwtagstyle{}\subpageref{NWeGZ5h-3Ma0FV-1}}}\endmoddef\nwalsodefined{\\{NWeGZ5h-3Ma0FV-2}}\nwnotused{copy.c}
+\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
+\nwendcode{}\nwbegindocs{2}\nwdocspar
+
+\nwenddocs{}\nwbegincode{3}\sublabel{NWeGZ5h-3Ma0FV-2}\nwmargintag{{\nwtagstyle{}\subpageref{NWeGZ5h-3Ma0FV-2}}}\moddef{copy.c~{\nwtagstyle{}\subpageref{NWeGZ5h-3Ma0FV-1}}}\plusendmoddef
+int main()
+\{
+    int c;
+    \LA{}For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}\RA{}
+        \LA{}Print the character.~{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}\RA{}
+
+    return 0;
+\}
+\nwendcode{}\nwbegindocs{4}\nwdocspar
+\nwenddocs{}\nwfilename{src/catblanks.nw}\nwbegindocs{0}\subsection{Exercise 1-9}
+
+\nwenddocs{}\nwbegincode{1}\sublabel{NW3mAddR-1wfzLT-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW3mAddR-1wfzLT-1}}}\moddef{catblanks.c~{\nwtagstyle{}\subpageref{NW3mAddR-1wfzLT-1}}}\endmoddef\nwalsodefined{\\{NW3mAddR-1wfzLT-2}}\nwnotused{catblanks.c}
+\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
+\LA{}Include the boolean type and values.~{\nwtagstyle{}\subpageref{NW2NYgKa-3jtwnH-1}}\RA{}
+\nwendcode{}\nwbegindocs{2}\nwdocspar
+
+
+\nwenddocs{}\nwbegincode{3}\sublabel{NW3mAddR-1wfzLT-2}\nwmargintag{{\nwtagstyle{}\subpageref{NW3mAddR-1wfzLT-2}}}\moddef{catblanks.c~{\nwtagstyle{}\subpageref{NW3mAddR-1wfzLT-1}}}\plusendmoddef
+int main()
+\{
+    int c;
+    bool prev_blank = false;
+
+    \LA{}For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}\RA{} \{
+        if (!(prev_blank && c == ' '))
+            \LA{}Print the character.~{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}\RA{}
+        prev_blank = (c == ' ');
+    \}
+
+
+    return 0;
+\}
+\nwidentuses{\\{{bool}{bool}}}\nwindexuse{bool}{bool}{NW3mAddR-1wfzLT-2}\nwendcode{}\nwbegindocs{4}\nwdocspar
+\nwenddocs{}\nwfilename{src/unambiguous.nw}\nwbegindocs{0}\subsection{Exercise 1-10}
+
+\begin{marginfigure}
+\nwenddocs{}\nwbegincode{1}\sublabel{NW31NdFr-dhso3-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\endmoddef\nwalsodefined{\\{NW31NdFr-dhso3-2}\\{NW31NdFr-dhso3-3}\\{NW31NdFr-dhso3-4}\\{NW31NdFr-dhso3-5}\\{NW31NdFr-dhso3-6}\\{NW31NdFr-dhso3-7}}\nwnotused{unambiguous.c}
+\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
+
+
+int main()
+\{
+\nwendcode{}\nwbegindocs{2}\nwdocspar
+\end{marginfigure}
+
+
+Process each character \cee{c}.
+
+\nwenddocs{}\nwbegincode{3}\sublabel{NW31NdFr-dhso3-2}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-2}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
+int c;
+
+    \LA{}For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}\RA{} \{
+\nwendcode{}\nwbegindocs{4}\nwdocspar
+
+
+Replace each tab by \cee{\t}.
+
+\nwenddocs{}\nwbegincode{5}\sublabel{NW31NdFr-dhso3-3}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-3}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
+        if (\LA{}the character is a tab~{\nwtagstyle{}\subpageref{NW2NYgKa-1ddOH0-1}}\RA{})
+            fputs("\\\\t", stdout);
+\nwidentuses{\\{{fputs}{fputs}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NW31NdFr-dhso3-3}\nwindexuse{stdout}{stdout}{NW31NdFr-dhso3-3}\nwendcode{}\nwbegindocs{6}\nwdocspar
+
+
+Replace each backspace by \cee{\b}.
+
+\nwenddocs{}\nwbegincode{7}\sublabel{NW31NdFr-dhso3-4}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-4}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
+        else if (\LA{}the character is a backspace~{\nwtagstyle{}\subpageref{NW2NYgKa-3sdYe1-1}}\RA{})
+           fputs("\\\\b", stdout);
+\nwidentuses{\\{{fputs}{fputs}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NW31NdFr-dhso3-4}\nwindexuse{stdout}{stdout}{NW31NdFr-dhso3-4}\nwendcode{}\nwbegindocs{8}\nwdocspar
+
+
+Replace each backslash by \cee{\\}.
+
+\nwenddocs{}\nwbegincode{9}\sublabel{NW31NdFr-dhso3-5}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-5}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
+        else if (\LA{}the character is a backslash~{\nwtagstyle{}\subpageref{NW2NYgKa-DgNor-1}}\RA{})
+            fputs("\\\\\\\\", stdout);
+\nwidentuses{\\{{fputs}{fputs}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NW31NdFr-dhso3-5}\nwindexuse{stdout}{stdout}{NW31NdFr-dhso3-5}\nwendcode{}\nwbegindocs{10}\nwdocspar
+
+
+Otherwise print the character unchanged.
+
+\nwenddocs{}\nwbegincode{11}\sublabel{NW31NdFr-dhso3-6}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-6}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
+        else
+            \LA{}Print the character.~{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}\RA{}
+\nwendcode{}\nwbegindocs{12}\nwdocspar
+
+
+\begin{marginfigure}
+  Finally, close the \cee{while} loop and exit.
+
+\nwenddocs{}\nwbegincode{13}\sublabel{NW31NdFr-dhso3-7}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-7}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
+    \}
+
+    return 0;
+\}
+\nwendcode{}\nwbegindocs{14}\nwdocspar
+\end{marginfigure}
+\nwenddocs{}\nwfilename{src/wc.nw}\nwbegindocs{0}\section{Character Counting}
 
 \nwenddocs{}\nwbegincode{1}\sublabel{NW4RQw30-3BMmrF-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW4RQw30-3BMmrF-1}}}\moddef{wc.c~{\nwtagstyle{}\subpageref{NW4RQw30-3BMmrF-1}}}\endmoddef\nwalsodefined{\\{NW4RQw30-3BMmrF-2}\\{NW4RQw30-3BMmrF-3}\\{NW4RQw30-3BMmrF-4}\\{NW4RQw30-3BMmrF-5}\\{NW4RQw30-3BMmrF-6}\\{NW4RQw30-3BMmrF-7}}\nwnotused{wc.c}
 \LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
@@ -95,99 +293,38 @@ int main()
     return 0;
 \}
 \nwidentuses{\\{{IN}{IN}}\\{{OUT}{OUT}}\\{{printf}{printf}}}\nwindexuse{IN}{IN}{NW4RQw30-3BMmrF-7}\nwindexuse{OUT}{OUT}{NW4RQw30-3BMmrF-7}\nwindexuse{printf}{printf}{NW4RQw30-3BMmrF-7}\nwendcode{}\nwbegindocs{14}\nwdocspar
-\nwenddocs{}\nwfilename{src/fahrcels.nw}\nwbegindocs{0}\section{Fahrenheit-Celsius table}
-\marginnote{Covers Exercises 1-3, 1-4, and 1-5.}
+\nwenddocs{}\nwfilename{src/words.nw}\nwbegindocs{0}\subsection{Exercise 1-12}
 
-\nwenddocs{}\nwbegincode{1}\sublabel{NW4GWIzp-1OV3uf-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\endmoddef\nwalsodefined{\\{NW4GWIzp-1OV3uf-2}\\{NW4GWIzp-1OV3uf-3}\\{NW4GWIzp-1OV3uf-4}\\{NW4GWIzp-1OV3uf-5}\\{NW4GWIzp-1OV3uf-6}}\nwnotused{fahrcels.c}
+\nwenddocs{}\nwbegincode{1}\sublabel{NWDo3Lq-Kkqnp-1}\nwmargintag{{\nwtagstyle{}\subpageref{NWDo3Lq-Kkqnp-1}}}\moddef{words.c~{\nwtagstyle{}\subpageref{NWDo3Lq-Kkqnp-1}}}\endmoddef\nwnotused{words.c}
 \LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
-\LA{}Include the standard string functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3aEjMV-1}}\RA{}
-\nwendcode{}\nwbegindocs{2}\nwdocspar
 
 
-Declare some useful constants.
+#define IN    1
+#define OUT   0
 
-\nwenddocs{}\nwbegincode{3}\sublabel{NW4GWIzp-1OV3uf-2}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-2}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
-#define LOWER 0
-#define UPPER 300
-#define STEP  20
-\nwindexdefn{LOWER}{LOWER}{NW4GWIzp-1OV3uf-2}\eatline
-\nwindexdefn{UPPER}{UPPER}{NW4GWIzp-1OV3uf-2}\eatline
-\nwindexdefn{STEP}{STEP}{NW4GWIzp-1OV3uf-2}\eatline
-\nwidentdefs{\\{{LOWER}{LOWER}}\\{{STEP}{STEP}}\\{{UPPER}{UPPER}}}\nwendcode{}\nwbegindocs{4}\nwdocspar
 
-\subsection{Exercise 1-3}
-
-\nwenddocs{}\nwbegincode{5}\sublabel{NW4GWIzp-1OV3uf-3}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-3}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
-void print_header(char lhs[], char rhs[])
-\{
-    printf("| %s | %s |\\n", lhs, rhs);
-    putchar('|');
-    for (int i = -2; i < (int)strlen(lhs); ++i)
-        putchar('-');
-    putchar('+');
-    for (int i = -2; i < (int)strlen(rhs); ++i)
-        putchar('-');
-    puts("|");
-\}
-\nwindexdefn{print{\char95}header}{print:unheader}{NW4GWIzp-1OV3uf-3}\eatline
-\nwidentdefs{\\{{print{\char95}header}{print:unheader}}}\nwidentuses{\\{{printf}{printf}}\\{{putchar}{putchar}}\\{{puts}{puts}}\\{{strlen}{strlen}}}\nwindexuse{printf}{printf}{NW4GWIzp-1OV3uf-3}\nwindexuse{putchar}{putchar}{NW4GWIzp-1OV3uf-3}\nwindexuse{puts}{puts}{NW4GWIzp-1OV3uf-3}\nwindexuse{strlen}{strlen}{NW4GWIzp-1OV3uf-3}\nwendcode{}\nwbegindocs{6}\nwdocspar
-
-\subsection{Exercise 1-4}
-
-\nwenddocs{}\nwbegincode{7}\sublabel{NW4GWIzp-1OV3uf-4}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-4}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
-void celsfahr()
-\{
-    print_header("Celsius", "Fahrenheit");
-    for (int celsius = LOWER; celsius <= UPPER; celsius += STEP)
-        printf("| %7d | %10.0f |\\n", celsius, 32.0 + (9.0/5.0) * celsius);
-\}
-\nwindexdefn{celsfahr}{celsfahr}{NW4GWIzp-1OV3uf-4}\eatline
-\nwidentdefs{\\{{celsfahr}{celsfahr}}}\nwidentuses{\\{{LOWER}{LOWER}}\\{{print{\char95}header}{print:unheader}}\\{{printf}{printf}}\\{{STEP}{STEP}}\\{{UPPER}{UPPER}}}\nwindexuse{LOWER}{LOWER}{NW4GWIzp-1OV3uf-4}\nwindexuse{print{\char95}header}{print:unheader}{NW4GWIzp-1OV3uf-4}\nwindexuse{printf}{printf}{NW4GWIzp-1OV3uf-4}\nwindexuse{STEP}{STEP}{NW4GWIzp-1OV3uf-4}\nwindexuse{UPPER}{UPPER}{NW4GWIzp-1OV3uf-4}\nwendcode{}\nwbegindocs{8}\nwdocspar
-
-\subsection{Exercise 1-5}
-
-\nwenddocs{}\nwbegincode{9}\sublabel{NW4GWIzp-1OV3uf-5}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-5}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
-void fahrcels()
-\{
-    print_header("Fahrenheit", "Celsius");
-    for (int fahr = UPPER; fahr >= LOWER; fahr -= STEP)
-        printf("| %10d | %7.1f |\\n", fahr, (5.0/9.0) * (fahr-32.0));
-\}
-\nwindexdefn{fahrcels}{fahrcels}{NW4GWIzp-1OV3uf-5}\eatline
-\nwidentdefs{\\{{fahrcels}{fahrcels}}}\nwidentuses{\\{{LOWER}{LOWER}}\\{{print{\char95}header}{print:unheader}}\\{{printf}{printf}}\\{{STEP}{STEP}}\\{{UPPER}{UPPER}}}\nwindexuse{LOWER}{LOWER}{NW4GWIzp-1OV3uf-5}\nwindexuse{print{\char95}header}{print:unheader}{NW4GWIzp-1OV3uf-5}\nwindexuse{printf}{printf}{NW4GWIzp-1OV3uf-5}\nwindexuse{STEP}{STEP}{NW4GWIzp-1OV3uf-5}\nwindexuse{UPPER}{UPPER}{NW4GWIzp-1OV3uf-5}\nwendcode{}\nwbegindocs{10}\nwdocspar
-
-\subsection{The \cee{main} function}
-
-\nwenddocs{}\nwbegincode{11}\sublabel{NW4GWIzp-1OV3uf-6}\nwmargintag{{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-6}}}\moddef{fahrcels.c~{\nwtagstyle{}\subpageref{NW4GWIzp-1OV3uf-1}}}\plusendmoddef
 int main()
 \{
-    fahrcels();
-    puts("\\n");
-    celsfahr();
+    int c, state;
+
+    state = OUT;
+    \LA{}For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}\RA{} \{
+        if (\LA{}the character is whitespace~{\nwtagstyle{}\subpageref{NW2NYgKa-2Ib0KE-1}}\RA{}) \{
+            if (state == IN)
+                putchar('\\n');
+            state = OUT;
+        \} else \{
+            state = IN;
+        \}
+
+        if (state == IN)
+            putchar(c);
+    \}
+
 
     return 0;
 \}
-\nwidentuses{\\{{celsfahr}{celsfahr}}\\{{fahrcels}{fahrcels}}\\{{puts}{puts}}}\nwindexuse{celsfahr}{celsfahr}{NW4GWIzp-1OV3uf-6}\nwindexuse{fahrcels}{fahrcels}{NW4GWIzp-1OV3uf-6}\nwindexuse{puts}{puts}{NW4GWIzp-1OV3uf-6}\nwendcode{}\nwbegindocs{12}\nwdocspar
-\nwenddocs{}\nwfilename{src/hello.nw}\nwbegindocs{0}\chapter{Chapter One}
-
-\section{Hello, world!}
-\marginnote{Covers Exercises 1-1 and 1-2.}
-
-Include the standard I/O functions, notably {\tt{}\protect\nwindexuse{printf}{printf}{NW2NYgKa-3vUi9y-1}printf}.
-
-\nwenddocs{}\nwbegincode{1}\sublabel{NWprjBA-1NFt3F-1}\nwmargintag{{\nwtagstyle{}\subpageref{NWprjBA-1NFt3F-1}}}\moddef{hello.c~{\nwtagstyle{}\subpageref{NWprjBA-1NFt3F-1}}}\endmoddef\nwalsodefined{\\{NWprjBA-1NFt3F-2}}\nwnotused{hello.c}
-\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
-\nwendcode{}\nwbegindocs{2}\nwdocspar
-
-
-Define a {\tt{}main} function that prints {\tt{}Hello,\ world!}.
-
-\nwenddocs{}\nwbegincode{3}\sublabel{NWprjBA-1NFt3F-2}\nwmargintag{{\nwtagstyle{}\subpageref{NWprjBA-1NFt3F-2}}}\moddef{hello.c~{\nwtagstyle{}\subpageref{NWprjBA-1NFt3F-1}}}\plusendmoddef
-int main()
-\{
-    printf("Hello, world!\\n");
-\}
-\nwidentuses{\\{{printf}{printf}}}\nwindexuse{printf}{printf}{NWprjBA-1NFt3F-2}\nwendcode{}\nwbegindocs{4}\nwdocspar
+\nwidentuses{\\{{IN}{IN}}\\{{OUT}{OUT}}\\{{putchar}{putchar}}}\nwindexuse{IN}{IN}{NWDo3Lq-Kkqnp-1}\nwindexuse{OUT}{OUT}{NWDo3Lq-Kkqnp-1}\nwindexuse{putchar}{putchar}{NWDo3Lq-Kkqnp-1}\nwendcode{}\nwbegindocs{2}\nwdocspar
 \nwenddocs{}\nwfilename{src/wordlength.nw}\nwbegindocs{0}\section{Arrays}
 
 \subsection{Exercise 1-13}
@@ -245,30 +382,6 @@ int main()
     return 0;
 \}
 \nwidentuses{\\{{IN}{IN}}\\{{OUT}{OUT}}\\{{printf}{printf}}\\{{putchar}{putchar}}}\nwindexuse{IN}{IN}{NW5QBY7-3RQC7o-1}\nwindexuse{OUT}{OUT}{NW5QBY7-3RQC7o-1}\nwindexuse{printf}{printf}{NW5QBY7-3RQC7o-1}\nwindexuse{putchar}{putchar}{NW5QBY7-3RQC7o-1}\nwendcode{}\nwbegindocs{2}\nwdocspar
-\nwenddocs{}\nwfilename{src/catblanks.nw}\nwbegindocs{0}\subsection{Exercise 1-9}
-
-\nwenddocs{}\nwbegincode{1}\sublabel{NW3mAddR-1wfzLT-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW3mAddR-1wfzLT-1}}}\moddef{catblanks.c~{\nwtagstyle{}\subpageref{NW3mAddR-1wfzLT-1}}}\endmoddef\nwalsodefined{\\{NW3mAddR-1wfzLT-2}}\nwnotused{catblanks.c}
-\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
-\LA{}Include the boolean type and values.~{\nwtagstyle{}\subpageref{NW2NYgKa-3jtwnH-1}}\RA{}
-\nwendcode{}\nwbegindocs{2}\nwdocspar
-
-
-\nwenddocs{}\nwbegincode{3}\sublabel{NW3mAddR-1wfzLT-2}\nwmargintag{{\nwtagstyle{}\subpageref{NW3mAddR-1wfzLT-2}}}\moddef{catblanks.c~{\nwtagstyle{}\subpageref{NW3mAddR-1wfzLT-1}}}\plusendmoddef
-int main()
-\{
-    int c;
-    bool prev_blank = false;
-
-    \LA{}For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}\RA{} \{
-        if (!(prev_blank && c == ' '))
-            \LA{}Print the character.~{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}\RA{}
-        prev_blank = (c == ' ');
-    \}
-
-
-    return 0;
-\}
-\nwidentuses{\\{{bool}{bool}}}\nwindexuse{bool}{bool}{NW3mAddR-1wfzLT-2}\nwendcode{}\nwbegindocs{4}\nwdocspar
 \nwenddocs{}\nwfilename{src/charfreq.nw}\nwbegindocs{0}\subsection{Exercise 1-14}
 
 \nwenddocs{}\nwbegincode{1}\sublabel{NWrjqKx-4Qhequ-1}\nwmargintag{{\nwtagstyle{}\subpageref{NWrjqKx-4Qhequ-1}}}\moddef{charfreq.c~{\nwtagstyle{}\subpageref{NWrjqKx-4Qhequ-1}}}\endmoddef\nwalsodefined{\\{NWrjqKx-4Qhequ-2}\\{NWrjqKx-4Qhequ-3}}\nwnotused{charfreq.c}
@@ -331,119 +444,6 @@ int main()
     return 0;
 \}
 \nwidentuses{\\{{fputs}{fputs}}\\{{prchar}{prchar}}\\{{putchar}{putchar}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NWrjqKx-4Qhequ-3}\nwindexuse{prchar}{prchar}{NWrjqKx-4Qhequ-3}\nwindexuse{putchar}{putchar}{NWrjqKx-4Qhequ-3}\nwindexuse{stdout}{stdout}{NWrjqKx-4Qhequ-3}\nwendcode{}\nwbegindocs{6}\nwdocspar
-\nwenddocs{}\nwfilename{src/unambiguous.nw}\nwbegindocs{0}\subsection{Exercise 1-10}
-
-\begin{marginfigure}
-\nwenddocs{}\nwbegincode{1}\sublabel{NW31NdFr-dhso3-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\endmoddef\nwalsodefined{\\{NW31NdFr-dhso3-2}\\{NW31NdFr-dhso3-3}\\{NW31NdFr-dhso3-4}\\{NW31NdFr-dhso3-5}\\{NW31NdFr-dhso3-6}\\{NW31NdFr-dhso3-7}}\nwnotused{unambiguous.c}
-\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
-
-
-int main()
-\{
-\nwendcode{}\nwbegindocs{2}\nwdocspar
-\end{marginfigure}
-
-
-Process each character \cee{c}.
-
-\nwenddocs{}\nwbegincode{3}\sublabel{NW31NdFr-dhso3-2}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-2}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
-int c;
-
-    \LA{}For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}\RA{} \{
-\nwendcode{}\nwbegindocs{4}\nwdocspar
-
-
-Replace each tab by \cee{\t}.
-
-\nwenddocs{}\nwbegincode{5}\sublabel{NW31NdFr-dhso3-3}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-3}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
-        if (\LA{}the character is a tab~{\nwtagstyle{}\subpageref{NW2NYgKa-1ddOH0-1}}\RA{})
-            fputs("\\\\t", stdout);
-\nwidentuses{\\{{fputs}{fputs}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NW31NdFr-dhso3-3}\nwindexuse{stdout}{stdout}{NW31NdFr-dhso3-3}\nwendcode{}\nwbegindocs{6}\nwdocspar
-
-
-Replace each backspace by \cee{\b}.
-
-\nwenddocs{}\nwbegincode{7}\sublabel{NW31NdFr-dhso3-4}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-4}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
-        else if (\LA{}the character is a backspace~{\nwtagstyle{}\subpageref{NW2NYgKa-3sdYe1-1}}\RA{})
-           fputs("\\\\b", stdout);
-\nwidentuses{\\{{fputs}{fputs}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NW31NdFr-dhso3-4}\nwindexuse{stdout}{stdout}{NW31NdFr-dhso3-4}\nwendcode{}\nwbegindocs{8}\nwdocspar
-
-
-Replace each backslash by \cee{\\}.
-
-\nwenddocs{}\nwbegincode{9}\sublabel{NW31NdFr-dhso3-5}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-5}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
-        else if (\LA{}the character is a backslash~{\nwtagstyle{}\subpageref{NW2NYgKa-DgNor-1}}\RA{})
-            fputs("\\\\\\\\", stdout);
-\nwidentuses{\\{{fputs}{fputs}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NW31NdFr-dhso3-5}\nwindexuse{stdout}{stdout}{NW31NdFr-dhso3-5}\nwendcode{}\nwbegindocs{10}\nwdocspar
-
-
-Otherwise print the character unchanged.
-
-\nwenddocs{}\nwbegincode{11}\sublabel{NW31NdFr-dhso3-6}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-6}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
-        else
-            \LA{}Print the character.~{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}\RA{}
-\nwendcode{}\nwbegindocs{12}\nwdocspar
-
-
-\begin{marginfigure}
-  Finally, close the \cee{while} loop and exit.
-
-\nwenddocs{}\nwbegincode{13}\sublabel{NW31NdFr-dhso3-7}\nwmargintag{{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-7}}}\moddef{unambiguous.c~{\nwtagstyle{}\subpageref{NW31NdFr-dhso3-1}}}\plusendmoddef
-    \}
-
-    return 0;
-\}
-\nwendcode{}\nwbegindocs{14}\nwdocspar
-\end{marginfigure}
-\nwenddocs{}\nwfilename{src/words.nw}\nwbegindocs{0}\subsection{Exercise 1-12}
-
-\nwenddocs{}\nwbegincode{1}\sublabel{NWDo3Lq-Kkqnp-1}\nwmargintag{{\nwtagstyle{}\subpageref{NWDo3Lq-Kkqnp-1}}}\moddef{words.c~{\nwtagstyle{}\subpageref{NWDo3Lq-Kkqnp-1}}}\endmoddef\nwnotused{words.c}
-\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
-
-
-#define IN    1
-#define OUT   0
-
-
-int main()
-\{
-    int c, state;
-
-    state = OUT;
-    \LA{}For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}\RA{} \{
-        if (\LA{}the character is whitespace~{\nwtagstyle{}\subpageref{NW2NYgKa-2Ib0KE-1}}\RA{}) \{
-            if (state == IN)
-                putchar('\\n');
-            state = OUT;
-        \} else \{
-            state = IN;
-        \}
-
-        if (state == IN)
-            putchar(c);
-    \}
-
-
-    return 0;
-\}
-\nwidentuses{\\{{IN}{IN}}\\{{OUT}{OUT}}\\{{putchar}{putchar}}}\nwindexuse{IN}{IN}{NWDo3Lq-Kkqnp-1}\nwindexuse{OUT}{OUT}{NWDo3Lq-Kkqnp-1}\nwindexuse{putchar}{putchar}{NWDo3Lq-Kkqnp-1}\nwendcode{}\nwbegindocs{2}\nwdocspar
-\nwenddocs{}\nwfilename{src/copy.nw}\nwbegindocs{0}\section{Copy}
-\marginnote{Covers Exercises 1-6 and 1-7.}
-
-\nwenddocs{}\nwbegincode{1}\sublabel{NWeGZ5h-3Ma0FV-1}\nwmargintag{{\nwtagstyle{}\subpageref{NWeGZ5h-3Ma0FV-1}}}\moddef{copy.c~{\nwtagstyle{}\subpageref{NWeGZ5h-3Ma0FV-1}}}\endmoddef\nwalsodefined{\\{NWeGZ5h-3Ma0FV-2}}\nwnotused{copy.c}
-\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
-\nwendcode{}\nwbegindocs{2}\nwdocspar
-
-\nwenddocs{}\nwbegincode{3}\sublabel{NWeGZ5h-3Ma0FV-2}\nwmargintag{{\nwtagstyle{}\subpageref{NWeGZ5h-3Ma0FV-2}}}\moddef{copy.c~{\nwtagstyle{}\subpageref{NWeGZ5h-3Ma0FV-1}}}\plusendmoddef
-int main()
-\{
-    int c;
-    \LA{}For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}\RA{}
-        \LA{}Print the character.~{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}\RA{}
-
-    return 0;
-\}
-\nwendcode{}\nwbegindocs{4}\nwdocspar
 \nwenddocs{}\nwfilename{src/longestline.nw}\nwbegindocs{0}\section{Functions}
 
 %% NOTE: I already wrote function for the temperature conversion program of Section 1.2...
@@ -572,12 +572,12 @@ void copy(char to[], char from[])
 
 \section{Headers}
 
-\nwenddocs{}\nwbegincode{1}\sublabel{NW2NYgKa-3jtwnH-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-3jtwnH-1}}}\moddef{Include the boolean type and values.~{\nwtagstyle{}\subpageref{NW2NYgKa-3jtwnH-1}}}\endmoddef\nwused{\\{NW4RQw30-3BMmrF-1}\\{NW3mAddR-1wfzLT-1}}
+\nwenddocs{}\nwbegincode{1}\sublabel{NW2NYgKa-3jtwnH-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-3jtwnH-1}}}\moddef{Include the boolean type and values.~{\nwtagstyle{}\subpageref{NW2NYgKa-3jtwnH-1}}}\endmoddef\nwused{\\{NW3mAddR-1wfzLT-1}\\{NW4RQw30-3BMmrF-1}}
 #include <stdbool.h>
 \nwindexdefn{bool}{bool}{NW2NYgKa-3jtwnH-1}\eatline
 \nwidentdefs{\\{{bool}{bool}}}\nwendcode{}\nwbegindocs{2}\nwdocspar
 
-\nwenddocs{}\nwbegincode{3}\sublabel{NW2NYgKa-3vUi9y-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}}\moddef{Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}}\endmoddef\nwused{\\{NW4RQw30-3BMmrF-1}\\{NW4GWIzp-1OV3uf-1}\\{NWprjBA-1NFt3F-1}\\{NW5QBY7-3RQC7o-1}\\{NW3mAddR-1wfzLT-1}\\{NWrjqKx-4Qhequ-1}\\{NW31NdFr-dhso3-1}\\{NWDo3Lq-Kkqnp-1}\\{NWeGZ5h-3Ma0FV-1}\\{NW4X7urs-4gQLFh-1}}
+\nwenddocs{}\nwbegincode{3}\sublabel{NW2NYgKa-3vUi9y-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}}\moddef{Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}}\endmoddef\nwused{\\{NWprjBA-1NFt3F-1}\\{NW4GWIzp-1OV3uf-1}\\{NWeGZ5h-3Ma0FV-1}\\{NW3mAddR-1wfzLT-1}\\{NW31NdFr-dhso3-1}\\{NW4RQw30-3BMmrF-1}\\{NWDo3Lq-Kkqnp-1}\\{NW5QBY7-3RQC7o-1}\\{NWrjqKx-4Qhequ-1}\\{NW4X7urs-4gQLFh-1}}
 #include <stdio.h>
 \nwindexdefn{fputs}{fputs}{NW2NYgKa-3vUi9y-1}\eatline
 \nwindexdefn{printf}{printf}{NW2NYgKa-3vUi9y-1}\eatline
@@ -595,14 +595,14 @@ void copy(char to[], char from[])
 
 \subsection{Control}
 
-\nwenddocs{}\nwbegincode{7}\sublabel{NW2NYgKa-1r5pD7-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}}\moddef{For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}}\endmoddef\nwused{\\{NW4RQw30-3BMmrF-3}\\{NW4RQw30-3BMmrF-5}\\{NW4RQw30-3BMmrF-7}\\{NW5QBY7-3RQC7o-1}\\{NW3mAddR-1wfzLT-2}\\{NWrjqKx-4Qhequ-3}\\{NW31NdFr-dhso3-2}\\{NWDo3Lq-Kkqnp-1}\\{NWeGZ5h-3Ma0FV-2}}
+\nwenddocs{}\nwbegincode{7}\sublabel{NW2NYgKa-1r5pD7-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}}\moddef{For each character \code{}c\edoc{} until \code{}EOF\edoc{}~{\nwtagstyle{}\subpageref{NW2NYgKa-1r5pD7-1}}}\endmoddef\nwused{\\{NWeGZ5h-3Ma0FV-2}\\{NW3mAddR-1wfzLT-2}\\{NW31NdFr-dhso3-2}\\{NW4RQw30-3BMmrF-3}\\{NW4RQw30-3BMmrF-5}\\{NW4RQw30-3BMmrF-7}\\{NWDo3Lq-Kkqnp-1}\\{NW5QBY7-3RQC7o-1}\\{NWrjqKx-4Qhequ-3}}
 while ((c = getchar()) != EOF)
 \nwendcode{}\nwbegindocs{8}\nwdocspar
 
 
 \subsection{I/O}
 
-\nwenddocs{}\nwbegincode{9}\sublabel{NW2NYgKa-3rIhsx-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}}\moddef{Print the character.~{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}}\endmoddef\nwused{\\{NW3mAddR-1wfzLT-2}\\{NW31NdFr-dhso3-6}\\{NWeGZ5h-3Ma0FV-2}}
+\nwenddocs{}\nwbegincode{9}\sublabel{NW2NYgKa-3rIhsx-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}}\moddef{Print the character.~{\nwtagstyle{}\subpageref{NW2NYgKa-3rIhsx-1}}}\endmoddef\nwused{\\{NWeGZ5h-3Ma0FV-2}\\{NW3mAddR-1wfzLT-2}\\{NW31NdFr-dhso3-6}}
 putchar(c);
 \nwidentuses{\\{{putchar}{putchar}}}\nwindexuse{putchar}{putchar}{NW2NYgKa-3rIhsx-1}\nwendcode{}\nwbegindocs{10}\nwdocspar
 
@@ -611,7 +611,7 @@ putchar(c);
 
 For our purposes, whitespace is a space, tab, or newline.
 
-\nwenddocs{}\nwbegincode{11}\sublabel{NW2NYgKa-2Ib0KE-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-2Ib0KE-1}}}\moddef{the character is whitespace~{\nwtagstyle{}\subpageref{NW2NYgKa-2Ib0KE-1}}}\endmoddef\nwused{\\{NW4RQw30-3BMmrF-4}\\{NW4RQw30-3BMmrF-7}\\{NW5QBY7-3RQC7o-1}\\{NWDo3Lq-Kkqnp-1}}
+\nwenddocs{}\nwbegincode{11}\sublabel{NW2NYgKa-2Ib0KE-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-2Ib0KE-1}}}\moddef{the character is whitespace~{\nwtagstyle{}\subpageref{NW2NYgKa-2Ib0KE-1}}}\endmoddef\nwused{\\{NW4RQw30-3BMmrF-4}\\{NW4RQw30-3BMmrF-7}\\{NWDo3Lq-Kkqnp-1}\\{NW5QBY7-3RQC7o-1}}
 c == ' ' || \LA{}the character is a newline~{\nwtagstyle{}\subpageref{NW2NYgKa-4eMozD-1}}\RA{} || \LA{}the character is a tab~{\nwtagstyle{}\subpageref{NW2NYgKa-1ddOH0-1}}\RA{}
 \nwendcode{}\nwbegindocs{12}\nwdocspar
 
@@ -636,18 +636,18 @@ c == '\\\\'
 \nwixlogsorted{c}{{charfreq.c}{NWrjqKx-4Qhequ-1}{\nwixd{NWrjqKx-4Qhequ-1}\nwixd{NWrjqKx-4Qhequ-2}\nwixd{NWrjqKx-4Qhequ-3}}}%
 \nwixlogsorted{c}{{copy.c}{NWeGZ5h-3Ma0FV-1}{\nwixd{NWeGZ5h-3Ma0FV-1}\nwixd{NWeGZ5h-3Ma0FV-2}}}%
 \nwixlogsorted{c}{{fahrcels.c}{NW4GWIzp-1OV3uf-1}{\nwixd{NW4GWIzp-1OV3uf-1}\nwixd{NW4GWIzp-1OV3uf-2}\nwixd{NW4GWIzp-1OV3uf-3}\nwixd{NW4GWIzp-1OV3uf-4}\nwixd{NW4GWIzp-1OV3uf-5}\nwixd{NW4GWIzp-1OV3uf-6}}}%
-\nwixlogsorted{c}{{For each character \code{}c\edoc{} until \code{}EOF\edoc{}}{NW2NYgKa-1r5pD7-1}{\nwixu{NW4RQw30-3BMmrF-3}\nwixu{NW4RQw30-3BMmrF-5}\nwixu{NW4RQw30-3BMmrF-7}\nwixu{NW5QBY7-3RQC7o-1}\nwixu{NW3mAddR-1wfzLT-2}\nwixu{NWrjqKx-4Qhequ-3}\nwixu{NW31NdFr-dhso3-2}\nwixu{NWDo3Lq-Kkqnp-1}\nwixu{NWeGZ5h-3Ma0FV-2}\nwixd{NW2NYgKa-1r5pD7-1}}}%
+\nwixlogsorted{c}{{For each character \code{}c\edoc{} until \code{}EOF\edoc{}}{NW2NYgKa-1r5pD7-1}{\nwixu{NWeGZ5h-3Ma0FV-2}\nwixu{NW3mAddR-1wfzLT-2}\nwixu{NW31NdFr-dhso3-2}\nwixu{NW4RQw30-3BMmrF-3}\nwixu{NW4RQw30-3BMmrF-5}\nwixu{NW4RQw30-3BMmrF-7}\nwixu{NWDo3Lq-Kkqnp-1}\nwixu{NW5QBY7-3RQC7o-1}\nwixu{NWrjqKx-4Qhequ-3}\nwixd{NW2NYgKa-1r5pD7-1}}}%
 \nwixlogsorted{c}{{hello.c}{NWprjBA-1NFt3F-1}{\nwixd{NWprjBA-1NFt3F-1}\nwixd{NWprjBA-1NFt3F-2}}}%
-\nwixlogsorted{c}{{Include the boolean type and values.}{NW2NYgKa-3jtwnH-1}{\nwixu{NW4RQw30-3BMmrF-1}\nwixu{NW3mAddR-1wfzLT-1}\nwixd{NW2NYgKa-3jtwnH-1}}}%
-\nwixlogsorted{c}{{Include the standard I/O functions.}{NW2NYgKa-3vUi9y-1}{\nwixu{NW4RQw30-3BMmrF-1}\nwixu{NW4GWIzp-1OV3uf-1}\nwixu{NWprjBA-1NFt3F-1}\nwixu{NW5QBY7-3RQC7o-1}\nwixu{NW3mAddR-1wfzLT-1}\nwixu{NWrjqKx-4Qhequ-1}\nwixu{NW31NdFr-dhso3-1}\nwixu{NWDo3Lq-Kkqnp-1}\nwixu{NWeGZ5h-3Ma0FV-1}\nwixu{NW4X7urs-4gQLFh-1}\nwixd{NW2NYgKa-3vUi9y-1}}}%
+\nwixlogsorted{c}{{Include the boolean type and values.}{NW2NYgKa-3jtwnH-1}{\nwixu{NW3mAddR-1wfzLT-1}\nwixu{NW4RQw30-3BMmrF-1}\nwixd{NW2NYgKa-3jtwnH-1}}}%
+\nwixlogsorted{c}{{Include the standard I/O functions.}{NW2NYgKa-3vUi9y-1}{\nwixu{NWprjBA-1NFt3F-1}\nwixu{NW4GWIzp-1OV3uf-1}\nwixu{NWeGZ5h-3Ma0FV-1}\nwixu{NW3mAddR-1wfzLT-1}\nwixu{NW31NdFr-dhso3-1}\nwixu{NW4RQw30-3BMmrF-1}\nwixu{NWDo3Lq-Kkqnp-1}\nwixu{NW5QBY7-3RQC7o-1}\nwixu{NWrjqKx-4Qhequ-1}\nwixu{NW4X7urs-4gQLFh-1}\nwixd{NW2NYgKa-3vUi9y-1}}}%
 \nwixlogsorted{c}{{Include the standard string functions.}{NW2NYgKa-3aEjMV-1}{\nwixu{NW4GWIzp-1OV3uf-1}\nwixd{NW2NYgKa-3aEjMV-1}}}%
 \nwixlogsorted{c}{{longestline.c}{NW4X7urs-4gQLFh-1}{\nwixd{NW4X7urs-4gQLFh-1}\nwixd{NW4X7urs-4gQLFh-2}\nwixd{NW4X7urs-4gQLFh-3}\nwixd{NW4X7urs-4gQLFh-4}\nwixd{NW4X7urs-4gQLFh-5}\nwixd{NW4X7urs-4gQLFh-6}\nwixd{NW4X7urs-4gQLFh-7}\nwixd{NW4X7urs-4gQLFh-8}\nwixd{NW4X7urs-4gQLFh-9}\nwixd{NW4X7urs-4gQLFh-A}\nwixd{NW4X7urs-4gQLFh-B}\nwixd{NW4X7urs-4gQLFh-C}}}%
-\nwixlogsorted{c}{{Print the character.}{NW2NYgKa-3rIhsx-1}{\nwixu{NW3mAddR-1wfzLT-2}\nwixu{NW31NdFr-dhso3-6}\nwixu{NWeGZ5h-3Ma0FV-2}\nwixd{NW2NYgKa-3rIhsx-1}}}%
+\nwixlogsorted{c}{{Print the character.}{NW2NYgKa-3rIhsx-1}{\nwixu{NWeGZ5h-3Ma0FV-2}\nwixu{NW3mAddR-1wfzLT-2}\nwixu{NW31NdFr-dhso3-6}\nwixd{NW2NYgKa-3rIhsx-1}}}%
 \nwixlogsorted{c}{{the character is a backslash}{NW2NYgKa-DgNor-1}{\nwixu{NW31NdFr-dhso3-5}\nwixd{NW2NYgKa-DgNor-1}}}%
 \nwixlogsorted{c}{{the character is a backspace}{NW2NYgKa-3sdYe1-1}{\nwixu{NW31NdFr-dhso3-4}\nwixd{NW2NYgKa-3sdYe1-1}}}%
 \nwixlogsorted{c}{{the character is a newline}{NW2NYgKa-4eMozD-1}{\nwixu{NW4RQw30-3BMmrF-3}\nwixu{NW4RQw30-3BMmrF-7}\nwixu{NW2NYgKa-2Ib0KE-1}\nwixd{NW2NYgKa-4eMozD-1}}}%
 \nwixlogsorted{c}{{the character is a tab}{NW2NYgKa-1ddOH0-1}{\nwixu{NW31NdFr-dhso3-3}\nwixu{NW2NYgKa-2Ib0KE-1}\nwixd{NW2NYgKa-1ddOH0-1}}}%
-\nwixlogsorted{c}{{the character is whitespace}{NW2NYgKa-2Ib0KE-1}{\nwixu{NW4RQw30-3BMmrF-4}\nwixu{NW4RQw30-3BMmrF-7}\nwixu{NW5QBY7-3RQC7o-1}\nwixu{NWDo3Lq-Kkqnp-1}\nwixd{NW2NYgKa-2Ib0KE-1}}}%
+\nwixlogsorted{c}{{the character is whitespace}{NW2NYgKa-2Ib0KE-1}{\nwixu{NW4RQw30-3BMmrF-4}\nwixu{NW4RQw30-3BMmrF-7}\nwixu{NWDo3Lq-Kkqnp-1}\nwixu{NW5QBY7-3RQC7o-1}\nwixd{NW2NYgKa-2Ib0KE-1}}}%
 \nwixlogsorted{c}{{unambiguous.c}{NW31NdFr-dhso3-1}{\nwixd{NW31NdFr-dhso3-1}\nwixd{NW31NdFr-dhso3-2}\nwixd{NW31NdFr-dhso3-3}\nwixd{NW31NdFr-dhso3-4}\nwixd{NW31NdFr-dhso3-5}\nwixd{NW31NdFr-dhso3-6}\nwixd{NW31NdFr-dhso3-7}}}%
 \nwixlogsorted{c}{{wc.c}{NW4RQw30-3BMmrF-1}{\nwixd{NW4RQw30-3BMmrF-1}\nwixd{NW4RQw30-3BMmrF-2}\nwixd{NW4RQw30-3BMmrF-3}\nwixd{NW4RQw30-3BMmrF-4}\nwixd{NW4RQw30-3BMmrF-5}\nwixd{NW4RQw30-3BMmrF-6}\nwixd{NW4RQw30-3BMmrF-7}}}%
 \nwixlogsorted{c}{{wordlength.c}{NW5QBY7-3RQC7o-1}{\nwixd{NW5QBY7-3RQC7o-1}}}%

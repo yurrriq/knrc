@@ -1,6 +1,17 @@
 CFLAGS  ?= -Wall -std=c99
 cpif    ?= | cpif
-C_SRCS  := $(patsubst %.nw,%.c,$(filter-out src/common.nw,$(wildcard src/*.nw)))
+C_SRCS  := $(addsuffix .c,$(addprefix src/,\
+	hello\
+	fahrcels\
+	copy\
+	catblanks\
+	unambiguous\
+	wc\
+	words\
+	wordlength\
+	charfreq\
+	longestline\
+	))
 PDF     := docs/doc.pdf
 BIN     := $(patsubst src/%.c,bin/%,${C_SRCS})
 
