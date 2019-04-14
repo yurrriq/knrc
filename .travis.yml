@@ -1,5 +1,12 @@
 language: nix
 nix: 2.2.1
+
+
+before_script:
+- nix-env -iA cachix -f https://cachix.org/api/v1/install
+- cachix use yurrriq
+
+
 jobs:
   include:
     - stage: Build
