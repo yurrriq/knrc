@@ -6,30 +6,43 @@
 \subsection{Exercise 1-16}
 
 <<longestline.c>>=
+/*!
+  @file
+  @brief Longest Line
+  @author Eric Bailey
+  @date 2019-04-13
+*/
+@
+
+<<longestline.c>>=
 <<Include the standard I/O functions.>>
+#include "get_line.h"
 
+@
 
-#define MAXLINE 3
+Define the maximum line length to read into memory.
+<<longestline.c>>=
+/// The maximum line length to read into memory.
+#define MAXLINE 80
 
 
 @ %def MAXLINE
 
-Declare a function [[getline]] that, given a character array and maximum line length to copy to it, returns the length of the longest line.
-<<longestline.c>>=
-int getline(char line[], int maxline);
-@
 
 <<longestline.c>>=
 void copy(char to[], char from[]);
 
 
+@
+
+<<longestline.c>>=
 int main()
 {
     int len, max;
     char line[MAXLINE], longest[MAXLINE];
 
     max = 0;
-    while ((len = getline(line, MAXLINE)) > 0)
+    while ((len = get_line(line, MAXLINE)) > 0)
 	if (len > max) {
 	    max = len;
 	    copy(longest, line);
@@ -53,62 +66,12 @@ If the line was too long to print fully, print an ellipsis and a newline.
 <<longestline.c>>=
     }
 
-
     return 0;
 }
 
 
 @
 
-<<longestline.c>>=
-/* getline: read a line into s, return length */
-int getline(char s[], int lim)
-{
-    int c, i;
-
-    for (i = 0; i < lim-1 && (c = getchar()) != EOF && c != '\n'; ++i)
-	s[i] = c;
-
-    if (c == '\n') {
-	s[i] = c;
-	++i;
-    }
-
-    s[i] = '\0';
-
-@ %def getline
-
-If the last character read is a newline, return the number of characters in the line.
-<<longestline.c>>=
-    if (c == '\n')
-	return i;
-
-@
-
-Otherwise, continue to count characters, until the end of the line or file.
-
-<<longestline.c>>=
-
-    while ((c = getchar()) != '\n' && c != EOF)
-	++i;
-
-@
-
-If we ended on a newline character, increment the count.
-<<longestline.c>>=
-    if (c == '\n')
-	++i;
-
-
-@
-
-Return the length of the longest line.
-<<longestline.c>>=
-    return i;
-}
-
-
-@
 
 <<longestline.c>>=
 /* copy: copy `from' into `to'; assume `to' is big enough */

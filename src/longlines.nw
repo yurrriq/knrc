@@ -1,0 +1,54 @@
+\subsection{Exercise 1-17}
+
+
+<<longlines.c>>=
+/*!
+  @file
+  @brief Print long lines.
+  @author Eric Bailey
+  @date 2019-04-13
+*/
+@
+
+<<longlines.c>>=
+<<Include the standard I/O functions.>>
+#include "get_line.h"
+
+
+@
+
+Define the maximum line length to read into memory.
+<<longlines.c>>=
+/// The maximum line length to read into memory.
+#define MAXLINE 57
+
+
+@ %def MAXLINE
+
+Define the minimum line length to be considered long.
+<<longlines.c>>=
+/// The minimum line length to be considered long.
+#define MINLENGTH 54
+
+
+@ %def MINLENGTH
+
+
+<<longlines.c>>=
+int main()
+{
+    int len;
+    char line[MAXLINE];
+
+    while ((len = get_line(line, MAXLINE)) > 0) {
+       if (len > MINLENGTH)
+	   printf("%s", line);
+       if (len >= MAXLINE && line[MAXLINE - 1] != '\n')
+	    fputs("...\n", stdout);
+    }
+
+    return 0;
+}
+
+
+@

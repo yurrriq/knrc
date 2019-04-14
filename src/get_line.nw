@@ -1,0 +1,73 @@
+<<get_line.h>>=
+/**
+ * @file
+ * Read a line and return its length.
+ */
+
+
+@
+
+Declare a function [[get_line]] that, given a character array and maximum line length to copy to it, returns the length of the longest line.
+<<get_line.h>>=
+int get_line(char line[], int maxline);
+
+
+@
+
+
+<<get_line.c>>=
+/**
+ * @file
+ */
+
+<<Include the standard I/O functions.>>
+#include "get_line.h"
+
+
+
+/**
+ * Read a line into @p s, up to @p lim characters.
+ *
+ * @param s A character array.
+ * @param lim The length of @p s.
+ *
+ * @return The full length of the line.
+ */
+int get_line(char s[], int lim)
+{
+    int c = EOF, i;
+
+    for (i = 0; i < lim-1 && (c = getchar()) != EOF; ++i) {
+	s[i] = c;
+	if (c == '\n') {
+	    ++i;
+	    break;
+	}
+    }
+
+    s[i] = '\0';
+
+@ %def get_line
+
+If the last character read is a newline, return the number of characters in the line.
+<<get_line.c>>=
+    if (c == '\n')
+	return i;
+
+@
+
+Otherwise, continue to count characters, until the end of the line or file.
+<<get_line.c>>=
+    while ((c = getchar()) != EOF) {
+	++i;
+	if (c == '\n')
+	    break;
+    }
+
+@
+
+Return the length of the longest line.
+<<get_line.c>>=
+    return i;
+}
+@

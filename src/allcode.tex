@@ -451,112 +451,75 @@ int main()
 
 \subsection{Exercise 1-16}
 
-\nwenddocs{}\nwbegincode{1}\sublabel{NW4X7urs-4gQLFh-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\endmoddef\nwalsodefined{\\{NW4X7urs-4gQLFh-2}\\{NW4X7urs-4gQLFh-3}\\{NW4X7urs-4gQLFh-4}\\{NW4X7urs-4gQLFh-5}\\{NW4X7urs-4gQLFh-6}\\{NW4X7urs-4gQLFh-7}\\{NW4X7urs-4gQLFh-8}\\{NW4X7urs-4gQLFh-9}\\{NW4X7urs-4gQLFh-A}\\{NW4X7urs-4gQLFh-B}\\{NW4X7urs-4gQLFh-C}}\nwnotused{longestline.c}
-\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
+\nwenddocs{}\nwbegincode{1}\sublabel{NW4X7urs-4gQLFh-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\endmoddef\nwalsodefined{\\{NW4X7urs-4gQLFh-2}\\{NW4X7urs-4gQLFh-3}\\{NW4X7urs-4gQLFh-4}\\{NW4X7urs-4gQLFh-5}\\{NW4X7urs-4gQLFh-6}\\{NW4X7urs-4gQLFh-7}\\{NW4X7urs-4gQLFh-8}\\{NW4X7urs-4gQLFh-9}}\nwnotused{longestline.c}
+/*!
+  @file
+  @brief Longest Line
+  @author Eric Bailey
+  @date 2019-04-13
+*/
+\nwendcode{}\nwbegindocs{2}\nwdocspar
 
-
-#define MAXLINE 3
-
-
-\nwindexdefn{MAXLINE}{MAXLINE}{NW4X7urs-4gQLFh-1}\eatline
-\nwidentdefs{\\{{MAXLINE}{MAXLINE}}}\nwendcode{}\nwbegindocs{2}\nwdocspar
-Declare a function {\tt{}\protect\nwindexuse{getline}{getline}{NW4X7urs-4gQLFh-7}getline} that, given a character array and maximum line length to copy to it, returns the length of the longest line.
 \nwenddocs{}\nwbegincode{3}\sublabel{NW4X7urs-4gQLFh-2}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-2}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
-int getline(char line[], int maxline);
-\nwidentuses{\\{{getline}{getline}}}\nwindexuse{getline}{getline}{NW4X7urs-4gQLFh-2}\nwendcode{}\nwbegindocs{4}\nwdocspar
+\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
+#include "get_line.h"
 
+\nwendcode{}\nwbegindocs{4}\nwdocspar
+
+Define the maximum line length to read into memory.
 \nwenddocs{}\nwbegincode{5}\sublabel{NW4X7urs-4gQLFh-3}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-3}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
+/// The maximum line length to read into memory.
+#define MAXLINE 80
+
+
+\nwindexdefn{MAXLINE}{MAXLINE}{NW4X7urs-4gQLFh-3}\eatline
+\nwidentdefs{\\{{MAXLINE}{MAXLINE}}}\nwendcode{}\nwbegindocs{6}\nwdocspar
+
+\nwenddocs{}\nwbegincode{7}\sublabel{NW4X7urs-4gQLFh-4}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-4}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
 void copy(char to[], char from[]);
 
 
+\nwidentuses{\\{{copy}{copy}}}\nwindexuse{copy}{copy}{NW4X7urs-4gQLFh-4}\nwendcode{}\nwbegindocs{8}\nwdocspar
+
+\nwenddocs{}\nwbegincode{9}\sublabel{NW4X7urs-4gQLFh-5}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-5}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
 int main()
 \{
     int len, max;
     char line[MAXLINE], longest[MAXLINE];
 
     max = 0;
-    while ((len = getline(line, MAXLINE)) > 0)
+    while ((len = get_line(line, MAXLINE)) > 0)
         if (len > max) \{
             max = len;
             copy(longest, line);
         \}
 
     if (max > 0) \{
-\nwidentuses{\\{{copy}{copy}}\\{{getline}{getline}}\\{{MAXLINE}{MAXLINE}}}\nwindexuse{copy}{copy}{NW4X7urs-4gQLFh-3}\nwindexuse{getline}{getline}{NW4X7urs-4gQLFh-3}\nwindexuse{MAXLINE}{MAXLINE}{NW4X7urs-4gQLFh-3}\nwendcode{}\nwbegindocs{6}\nwdocspar
+\nwidentuses{\\{{copy}{copy}}\\{{MAXLINE}{MAXLINE}}}\nwindexuse{copy}{copy}{NW4X7urs-4gQLFh-5}\nwindexuse{MAXLINE}{MAXLINE}{NW4X7urs-4gQLFh-5}\nwendcode{}\nwbegindocs{10}\nwdocspar
 
 Print the length of the longest line, and as much of it as possible:
-\nwenddocs{}\nwbegincode{7}\sublabel{NW4X7urs-4gQLFh-4}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-4}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
+\nwenddocs{}\nwbegincode{11}\sublabel{NW4X7urs-4gQLFh-6}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-6}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
         printf("The longest line had %d characters:\\n%s", max, longest);
-\nwidentuses{\\{{printf}{printf}}}\nwindexuse{printf}{printf}{NW4X7urs-4gQLFh-4}\nwendcode{}\nwbegindocs{8}\nwdocspar
+\nwidentuses{\\{{printf}{printf}}}\nwindexuse{printf}{printf}{NW4X7urs-4gQLFh-6}\nwendcode{}\nwbegindocs{12}\nwdocspar
 
 
 If the line was too long to print fully, print an ellipsis and a newline.
-\nwenddocs{}\nwbegincode{9}\sublabel{NW4X7urs-4gQLFh-5}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-5}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
+\nwenddocs{}\nwbegincode{13}\sublabel{NW4X7urs-4gQLFh-7}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-7}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
         if (max >= MAXLINE && longest[MAXLINE-1] != '\\n')
             fputs("...\\n", stdout);
-\nwidentuses{\\{{fputs}{fputs}}\\{{MAXLINE}{MAXLINE}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NW4X7urs-4gQLFh-5}\nwindexuse{MAXLINE}{MAXLINE}{NW4X7urs-4gQLFh-5}\nwindexuse{stdout}{stdout}{NW4X7urs-4gQLFh-5}\nwendcode{}\nwbegindocs{10}\nwdocspar
+\nwidentuses{\\{{fputs}{fputs}}\\{{MAXLINE}{MAXLINE}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NW4X7urs-4gQLFh-7}\nwindexuse{MAXLINE}{MAXLINE}{NW4X7urs-4gQLFh-7}\nwindexuse{stdout}{stdout}{NW4X7urs-4gQLFh-7}\nwendcode{}\nwbegindocs{14}\nwdocspar
 
-\nwenddocs{}\nwbegincode{11}\sublabel{NW4X7urs-4gQLFh-6}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-6}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
+\nwenddocs{}\nwbegincode{15}\sublabel{NW4X7urs-4gQLFh-8}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-8}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
     \}
-
 
     return 0;
 \}
 
 
-\nwendcode{}\nwbegindocs{12}\nwdocspar
-
-\nwenddocs{}\nwbegincode{13}\sublabel{NW4X7urs-4gQLFh-7}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-7}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
-/* getline: read a line into s, return length */
-int getline(char s[], int lim)
-\{
-    int c, i;
-
-    for (i = 0; i < lim-1 && (c = getchar()) != EOF && c != '\\n'; ++i)
-        s[i] = c;
-
-    if (c == '\\n') \{
-        s[i] = c;
-        ++i;
-    \}
-
-    s[i] = '\\0';
-
-\nwindexdefn{getline}{getline}{NW4X7urs-4gQLFh-7}\eatline
-\nwidentdefs{\\{{getline}{getline}}}\nwendcode{}\nwbegindocs{14}\nwdocspar
-If the last character read is a newline, return the number of characters in the line.
-\nwenddocs{}\nwbegincode{15}\sublabel{NW4X7urs-4gQLFh-8}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-8}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
-    if (c == '\\n')
-        return i;
-
 \nwendcode{}\nwbegindocs{16}\nwdocspar
 
-Otherwise, continue to count characters, until the end of the line or file.
 
 \nwenddocs{}\nwbegincode{17}\sublabel{NW4X7urs-4gQLFh-9}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-9}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
-
-    while ((c = getchar()) != '\\n' && c != EOF)
-        ++i;
-
-\nwendcode{}\nwbegindocs{18}\nwdocspar
-
-If we ended on a newline character, increment the count.
-\nwenddocs{}\nwbegincode{19}\sublabel{NW4X7urs-4gQLFh-A}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-A}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
-    if (c == '\\n')
-        ++i;
-
-
-\nwendcode{}\nwbegindocs{20}\nwdocspar
-
-Return the length of the longest line.
-\nwenddocs{}\nwbegincode{21}\sublabel{NW4X7urs-4gQLFh-B}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-B}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
-    return i;
-\}
-
-
-\nwendcode{}\nwbegindocs{22}\nwdocspar
-
-\nwenddocs{}\nwbegincode{23}\sublabel{NW4X7urs-4gQLFh-C}\nwmargintag{{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-C}}}\moddef{longestline.c~{\nwtagstyle{}\subpageref{NW4X7urs-4gQLFh-1}}}\plusendmoddef
 /* copy: copy `from' into `to'; assume `to' is big enough */
 void copy(char to[], char from[])
 \{
@@ -567,8 +530,62 @@ void copy(char to[], char from[])
 \}
 
 
-\nwindexdefn{copy}{copy}{NW4X7urs-4gQLFh-C}\eatline
-\nwidentdefs{\\{{copy}{copy}}}\nwendcode{}\nwfilename{src/common.nw}\nwbegindocs{0}\chapter*{Common}
+\nwindexdefn{copy}{copy}{NW4X7urs-4gQLFh-9}\eatline
+\nwidentdefs{\\{{copy}{copy}}}\nwendcode{}\nwfilename{src/longlines.nw}\nwbegindocs{0}\subsection{Exercise 1-17}
+
+
+\nwenddocs{}\nwbegincode{1}\sublabel{NW2b43Pt-wMQSP-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-1}}}\moddef{longlines.c~{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-1}}}\endmoddef\nwalsodefined{\\{NW2b43Pt-wMQSP-2}\\{NW2b43Pt-wMQSP-3}\\{NW2b43Pt-wMQSP-4}\\{NW2b43Pt-wMQSP-5}}\nwnotused{longlines.c}
+/*!
+  @file
+  @brief Print long lines.
+  @author Eric Bailey
+  @date 2019-04-13
+*/
+\nwendcode{}\nwbegindocs{2}\nwdocspar
+
+\nwenddocs{}\nwbegincode{3}\sublabel{NW2b43Pt-wMQSP-2}\nwmargintag{{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-2}}}\moddef{longlines.c~{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-1}}}\plusendmoddef
+\LA{}Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}\RA{}
+#include "get_line.h"
+
+
+\nwendcode{}\nwbegindocs{4}\nwdocspar
+
+Define the maximum line length to read into memory.
+\nwenddocs{}\nwbegincode{5}\sublabel{NW2b43Pt-wMQSP-3}\nwmargintag{{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-3}}}\moddef{longlines.c~{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-1}}}\plusendmoddef
+/// The maximum line length to read into memory.
+#define MAXLINE 57
+
+
+\nwindexdefn{MAXLINE}{MAXLINE}{NW2b43Pt-wMQSP-3}\eatline
+\nwidentdefs{\\{{MAXLINE}{MAXLINE}}}\nwendcode{}\nwbegindocs{6}\nwdocspar
+Define the minimum line length to be considered long.
+\nwenddocs{}\nwbegincode{7}\sublabel{NW2b43Pt-wMQSP-4}\nwmargintag{{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-4}}}\moddef{longlines.c~{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-1}}}\plusendmoddef
+/// The minimum line length to be considered long.
+#define MINLENGTH 54
+
+
+\nwindexdefn{MINLENGTH}{MINLENGTH}{NW2b43Pt-wMQSP-4}\eatline
+\nwidentdefs{\\{{MINLENGTH}{MINLENGTH}}}\nwendcode{}\nwbegindocs{8}\nwdocspar
+
+\nwenddocs{}\nwbegincode{9}\sublabel{NW2b43Pt-wMQSP-5}\nwmargintag{{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-5}}}\moddef{longlines.c~{\nwtagstyle{}\subpageref{NW2b43Pt-wMQSP-1}}}\plusendmoddef
+int main()
+\{
+    int len;
+    char line[MAXLINE];
+
+    while ((len = get_line(line, MAXLINE)) > 0) \{
+       if (len > MINLENGTH)
+           printf("%s", line);
+       if (len >= MAXLINE && line[MAXLINE - 1] != '\\n')
+            fputs("...\\n", stdout);
+    \}
+
+    return 0;
+\}
+
+
+\nwidentuses{\\{{fputs}{fputs}}\\{{MAXLINE}{MAXLINE}}\\{{MINLENGTH}{MINLENGTH}}\\{{printf}{printf}}\\{{stdout}{stdout}}}\nwindexuse{fputs}{fputs}{NW2b43Pt-wMQSP-5}\nwindexuse{MAXLINE}{MAXLINE}{NW2b43Pt-wMQSP-5}\nwindexuse{MINLENGTH}{MINLENGTH}{NW2b43Pt-wMQSP-5}\nwindexuse{printf}{printf}{NW2b43Pt-wMQSP-5}\nwindexuse{stdout}{stdout}{NW2b43Pt-wMQSP-5}\nwendcode{}\nwbegindocs{10}\nwdocspar
+\nwenddocs{}\nwfilename{src/common.nw}\nwbegindocs{0}\chapter*{Common}
 
 \section{Headers}
 
@@ -577,7 +594,7 @@ void copy(char to[], char from[])
 \nwindexdefn{bool}{bool}{NW2NYgKa-3jtwnH-1}\eatline
 \nwidentdefs{\\{{bool}{bool}}}\nwendcode{}\nwbegindocs{2}\nwdocspar
 
-\nwenddocs{}\nwbegincode{3}\sublabel{NW2NYgKa-3vUi9y-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}}\moddef{Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}}\endmoddef\nwused{\\{NWprjBA-1NFt3F-1}\\{NW4GWIzp-1OV3uf-1}\\{NWeGZ5h-3Ma0FV-1}\\{NW3mAddR-1wfzLT-1}\\{NW31NdFr-dhso3-1}\\{NW4RQw30-3BMmrF-1}\\{NWDo3Lq-Kkqnp-1}\\{NW5QBY7-3RQC7o-1}\\{NWrjqKx-4Qhequ-1}\\{NW4X7urs-4gQLFh-1}}
+\nwenddocs{}\nwbegincode{3}\sublabel{NW2NYgKa-3vUi9y-1}\nwmargintag{{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}}\moddef{Include the standard I/O functions.~{\nwtagstyle{}\subpageref{NW2NYgKa-3vUi9y-1}}}\endmoddef\nwused{\\{NWprjBA-1NFt3F-1}\\{NW4GWIzp-1OV3uf-1}\\{NWeGZ5h-3Ma0FV-1}\\{NW3mAddR-1wfzLT-1}\\{NW31NdFr-dhso3-1}\\{NW4RQw30-3BMmrF-1}\\{NWDo3Lq-Kkqnp-1}\\{NW5QBY7-3RQC7o-1}\\{NWrjqKx-4Qhequ-1}\\{NW4X7urs-4gQLFh-2}\\{NW2b43Pt-wMQSP-2}}
 #include <stdio.h>
 \nwindexdefn{fputs}{fputs}{NW2NYgKa-3vUi9y-1}\eatline
 \nwindexdefn{printf}{printf}{NW2NYgKa-3vUi9y-1}\eatline
@@ -639,9 +656,10 @@ c == '\\\\'
 \nwixlogsorted{c}{{For each character \code{}c\edoc{} until \code{}EOF\edoc{}}{NW2NYgKa-1r5pD7-1}{\nwixu{NWeGZ5h-3Ma0FV-2}\nwixu{NW3mAddR-1wfzLT-2}\nwixu{NW31NdFr-dhso3-2}\nwixu{NW4RQw30-3BMmrF-3}\nwixu{NW4RQw30-3BMmrF-5}\nwixu{NW4RQw30-3BMmrF-7}\nwixu{NWDo3Lq-Kkqnp-1}\nwixu{NW5QBY7-3RQC7o-1}\nwixu{NWrjqKx-4Qhequ-3}\nwixd{NW2NYgKa-1r5pD7-1}}}%
 \nwixlogsorted{c}{{hello.c}{NWprjBA-1NFt3F-1}{\nwixd{NWprjBA-1NFt3F-1}\nwixd{NWprjBA-1NFt3F-2}}}%
 \nwixlogsorted{c}{{Include the boolean type and values.}{NW2NYgKa-3jtwnH-1}{\nwixu{NW3mAddR-1wfzLT-1}\nwixu{NW4RQw30-3BMmrF-1}\nwixd{NW2NYgKa-3jtwnH-1}}}%
-\nwixlogsorted{c}{{Include the standard I/O functions.}{NW2NYgKa-3vUi9y-1}{\nwixu{NWprjBA-1NFt3F-1}\nwixu{NW4GWIzp-1OV3uf-1}\nwixu{NWeGZ5h-3Ma0FV-1}\nwixu{NW3mAddR-1wfzLT-1}\nwixu{NW31NdFr-dhso3-1}\nwixu{NW4RQw30-3BMmrF-1}\nwixu{NWDo3Lq-Kkqnp-1}\nwixu{NW5QBY7-3RQC7o-1}\nwixu{NWrjqKx-4Qhequ-1}\nwixu{NW4X7urs-4gQLFh-1}\nwixd{NW2NYgKa-3vUi9y-1}}}%
+\nwixlogsorted{c}{{Include the standard I/O functions.}{NW2NYgKa-3vUi9y-1}{\nwixu{NWprjBA-1NFt3F-1}\nwixu{NW4GWIzp-1OV3uf-1}\nwixu{NWeGZ5h-3Ma0FV-1}\nwixu{NW3mAddR-1wfzLT-1}\nwixu{NW31NdFr-dhso3-1}\nwixu{NW4RQw30-3BMmrF-1}\nwixu{NWDo3Lq-Kkqnp-1}\nwixu{NW5QBY7-3RQC7o-1}\nwixu{NWrjqKx-4Qhequ-1}\nwixu{NW4X7urs-4gQLFh-2}\nwixu{NW2b43Pt-wMQSP-2}\nwixd{NW2NYgKa-3vUi9y-1}}}%
 \nwixlogsorted{c}{{Include the standard string functions.}{NW2NYgKa-3aEjMV-1}{\nwixu{NW4GWIzp-1OV3uf-1}\nwixd{NW2NYgKa-3aEjMV-1}}}%
-\nwixlogsorted{c}{{longestline.c}{NW4X7urs-4gQLFh-1}{\nwixd{NW4X7urs-4gQLFh-1}\nwixd{NW4X7urs-4gQLFh-2}\nwixd{NW4X7urs-4gQLFh-3}\nwixd{NW4X7urs-4gQLFh-4}\nwixd{NW4X7urs-4gQLFh-5}\nwixd{NW4X7urs-4gQLFh-6}\nwixd{NW4X7urs-4gQLFh-7}\nwixd{NW4X7urs-4gQLFh-8}\nwixd{NW4X7urs-4gQLFh-9}\nwixd{NW4X7urs-4gQLFh-A}\nwixd{NW4X7urs-4gQLFh-B}\nwixd{NW4X7urs-4gQLFh-C}}}%
+\nwixlogsorted{c}{{longestline.c}{NW4X7urs-4gQLFh-1}{\nwixd{NW4X7urs-4gQLFh-1}\nwixd{NW4X7urs-4gQLFh-2}\nwixd{NW4X7urs-4gQLFh-3}\nwixd{NW4X7urs-4gQLFh-4}\nwixd{NW4X7urs-4gQLFh-5}\nwixd{NW4X7urs-4gQLFh-6}\nwixd{NW4X7urs-4gQLFh-7}\nwixd{NW4X7urs-4gQLFh-8}\nwixd{NW4X7urs-4gQLFh-9}}}%
+\nwixlogsorted{c}{{longlines.c}{NW2b43Pt-wMQSP-1}{\nwixd{NW2b43Pt-wMQSP-1}\nwixd{NW2b43Pt-wMQSP-2}\nwixd{NW2b43Pt-wMQSP-3}\nwixd{NW2b43Pt-wMQSP-4}\nwixd{NW2b43Pt-wMQSP-5}}}%
 \nwixlogsorted{c}{{Print the character.}{NW2NYgKa-3rIhsx-1}{\nwixu{NWeGZ5h-3Ma0FV-2}\nwixu{NW3mAddR-1wfzLT-2}\nwixu{NW31NdFr-dhso3-6}\nwixd{NW2NYgKa-3rIhsx-1}}}%
 \nwixlogsorted{c}{{the character is a backslash}{NW2NYgKa-DgNor-1}{\nwixu{NW31NdFr-dhso3-5}\nwixd{NW2NYgKa-DgNor-1}}}%
 \nwixlogsorted{c}{{the character is a backspace}{NW2NYgKa-3sdYe1-1}{\nwixu{NW31NdFr-dhso3-4}\nwixd{NW2NYgKa-3sdYe1-1}}}%
@@ -658,12 +676,12 @@ c == '\\\\'
 \nwixlogsorted{i}{{copy}{copy}}%
 \nwixlogsorted{i}{{fahrcels}{fahrcels}}%
 \nwixlogsorted{i}{{fputs}{fputs}}%
-\nwixlogsorted{i}{{getline}{getline}}%
 \nwixlogsorted{i}{{IN}{IN}}%
 \nwixlogsorted{i}{{is{\char95}whitespace}{is:unwhitespace}}%
 \nwixlogsorted{i}{{line{\char95}count}{line:uncount}}%
 \nwixlogsorted{i}{{LOWER}{LOWER}}%
 \nwixlogsorted{i}{{MAXLINE}{MAXLINE}}%
+\nwixlogsorted{i}{{MINLENGTH}{MINLENGTH}}%
 \nwixlogsorted{i}{{OUT}{OUT}}%
 \nwixlogsorted{i}{{prchar}{prchar}}%
 \nwixlogsorted{i}{{print{\char95}header}{print:unheader}}%

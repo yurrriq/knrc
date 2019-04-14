@@ -1,10 +1,16 @@
+/*!
+  @file
+  @brief Longest Line
+  @author Eric Bailey
+  @date 2019-04-13
+*/
 #include <stdio.h>
+#include "get_line.h"
+
+/// The maximum line length to read into memory.
+#define MAXLINE 80
 
 
-#define MAXLINE 3
-
-
-int getline(char line[], int maxline);
 void copy(char to[], char from[]);
 
 
@@ -14,7 +20,7 @@ int main()
     char line[MAXLINE], longest[MAXLINE];
 
     max = 0;
-    while ((len = getline(line, MAXLINE)) > 0)
+    while ((len = get_line(line, MAXLINE)) > 0)
         if (len > max) {
             max = len;
             copy(longest, line);
@@ -26,38 +32,7 @@ int main()
             fputs("...\n", stdout);
     }
 
-
     return 0;
-}
-
-
-/* getline: read a line into s, return length */
-int getline(char s[], int lim)
-{
-    int c, i;
-
-    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
-        s[i] = c;
-
-    if (c == '\n') {
-        s[i] = c;
-        ++i;
-    }
-
-    s[i] = '\0';
-
-    if (c == '\n')
-        return i;
-
-
-    while ((c = getchar()) != '\n' && c != EOF)
-        ++i;
-
-    if (c == '\n')
-        ++i;
-
-
-    return i;
 }
 
 

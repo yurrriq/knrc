@@ -56,7 +56,9 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = with pkgs; [
+    doxygen
     gcc
+    gdb
     indent
     iosevka
     noweb
