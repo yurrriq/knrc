@@ -45,8 +45,10 @@ with import nixpkgs {
   ];
 };
 
-stdenv.mkDerivation {
-  name = "knrc";
+stdenv.mkDerivation rec {
+  pname = "knrc";
+  version = builtins.readFile ./VERSION;
+  name = "${pname}-${version}";
   src = ./.;
 
   makeFlags = "-B";
