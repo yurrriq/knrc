@@ -1,21 +1,25 @@
 language: nix
 nix: 2.2.1
 
+sudo: false
 
-before_script:
+env:
+  global:
+  - CACHIX_CACHE=yurrriq
+
+install:
 - nix-env -iA cachix -f https://cachix.org/api/v1/install
-- cachix use yurrriq
-
+- cachix use "$CACHIX_CACHE"
+- nix-build -A nativeBuildInputs | cachix -v push "$CACHIX_CACHE"
 
 jobs:
   include:
-    - stage: Build
-      name: "Tangle source code"
-      script: nix-build -A dev
-    - name: "Build binaries"
-      script: nix-build
-    - stage: "Generate Documentation"
-      name: "Weave PDF"
-      script: nix-build -A docs
-    - name: "Generate documentation"
-      script: nix-shell --run doxygen
+  - stage: Build
+    name: "Tangle source code"
+    script: nix-build -A dev
+  - name: "Build binaries"
+    script: nix-build
+  - name: "Weave PDF"
+    script: nix-build -A docs
+  - name: "Generate documentation"
+    script: nix-shell --run doxygen
