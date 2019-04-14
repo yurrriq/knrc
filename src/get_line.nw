@@ -1,7 +1,9 @@
 <<get_line.h>>=
 /**
- * @file
- * Read a line and return its length.
+ * @file get_line.h
+ * @brief Read a line and return its length.
+ * @author Eric Bailey
+ * @date 2019-04-13
  */
 
 
@@ -17,12 +19,15 @@ int get_line(char line[], int maxline);
 
 <<get_line.c>>=
 /**
- * @file
+ * @file get_line.c
+ * @brief Read a line and return its length.
+ * @author Eric Bailey
+ * @date 2019-04-13
  */
+
 
 <<Include the standard I/O functions.>>
 #include "get_line.h"
-
 
 
 /**

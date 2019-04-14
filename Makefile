@@ -16,8 +16,9 @@ C_SRCS  := $(addsuffix .c,$(addprefix src/,\
 LIB_SRCS := $(addprefix src/,$(addsuffix .o,\
 	get_line\
 	))
-PDF     := docs/doc.pdf
-BIN     := $(patsubst src/%.c,bin/%,${C_SRCS})
+SRC := ${C_SRCS} $(patsubst %.o,%.c,${LIB_SRCS}) $(patsubst %.o,%.h,${LIB_SRCS})
+BIN := $(patsubst src/%.c,bin/%,${C_SRCS})
+PDF := docs/knrc.pdf
 
 ifneq (,$(findstring B,$(MAKEFLAGS)))
 latexmk_flags = -gg
@@ -31,7 +32,7 @@ all: bin dev docs
 
 bin: ${BIN}
 
-dev: ${C_SRCS} $(patsubst %.o,%.c,${LIB_SRCS}) $(patsubst %.o,%.h,${LIB_SRCS})
+dev: ${SRC}
 
 docs: ${PDF}
 	@ echo $^
@@ -39,7 +40,7 @@ docs: ${PDF}
 install:
 	install -m755 -Dt "$$out/bin/" ${BIN}
 	install -m644 -Dt "$$docs/" ${PDF}
-	install -m644 -Dt "$$dev/src/" ${C_SRCS}
+	install -m644 -Dt "$$dev/src/" ${SRC}
 
 nix-build:
 	nix-build -A all
@@ -51,11 +52,12 @@ clean:
 	$(foreach pdf,${PDF},latexmk ${latexmk_flags} -f -C ${pdf};)
 	rm -fR ${BIN} ${C_SRCS}{~,} docs/_minted-* result*
 
+.INTERMEDIATE: $(patsubst docs/%,src/%,${PDF})
 docs/%.pdf: src/%.pdf
 	@ install -m644 -o $$(id -u) -g $$(id -g) -Dt docs $^
 
-src/allcode.tex: $(patsubst %.c,%.nw,$(C_SRCS)) src/common.nw
-	noweave -n -index $^ >$@
+src/allcode.tex: $(patsubst %.c,%.nw,$(C_SRCS)) src/common.nw $(patsubst %.o,%.nw,$(LIB_SRCS))
+	noweave -filter 'sed "/^@use /s/_/\\\\_/g;/^@defn /s/_/\\\\_/g"' -n -index $^ >$@
 
 src/%.pdf: src/%.tex src/allcode.tex
 	latexmk $(latexmk_flags) $<

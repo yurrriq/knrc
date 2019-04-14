@@ -1,10 +1,13 @@
 /**
- * @file
+ * @file get_line.c
+ * @brief Read a line and return its length.
+ * @author Eric Bailey
+ * @date 2019-04-13
  */
+
 
 #include <stdio.h>
 #include "get_line.h"
-
 
 
 /**
