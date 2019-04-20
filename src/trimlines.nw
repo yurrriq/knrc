@@ -1,9 +1,7 @@
 \subsection{Exercise 1-18}
 
 <<trimlines.c>>=
-<<Include the boolean type and values.>>
 <<Include the standard I/O functions.>>
-#include <string.h>
 #include "get_line.h"
 
 
