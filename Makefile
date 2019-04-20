@@ -56,8 +56,9 @@ clean:
 docs/%.pdf: src/%.pdf
 	@ install -m644 -o $$(id -u) -g $$(id -g) -Dt docs $^
 
+escape_underscores := 'sed "/^@use /s/_/\\\\_/g;/^@defn /s/_/\\\\_/g"'
 src/allcode.tex: $(patsubst %.c,%.nw,$(C_SRCS)) src/common.nw $(patsubst %.o,%.nw,$(LIB_SRCS))
-	noweave -filter 'sed "/^@use /s/_/\\\\_/g;/^@defn /s/_/\\\\_/g"' -n -index $^ >$@
+	noweave -filter ${escape_underscores} -n -index $^ >$@
 
 src/%.pdf: src/%.tex src/allcode.tex
 	latexmk $(latexmk_flags) $<
