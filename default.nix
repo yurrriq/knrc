@@ -18,11 +18,6 @@ with import nixpkgs {
   overlays = [
     (import nur {}).repos.yurrriq.overlays.nur
     (self: super: {
-      noweb = super.noweb.override {
-        useIcon = false; # FIXME
-      };
-    })
-    (self: super: {
       xelatex-noweb = (super.texlive.combine {
         inherit (super) noweb;
         inherit (super.texlive) scheme-small
