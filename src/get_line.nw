@@ -52,7 +52,7 @@ int get_line(char s[], int lim)
 
     s[i] = '\0';
 
-@ %def get_line
+@
 
 If the last character read is a newline, return the number of characters in the line.
 <<get_line.c>>=

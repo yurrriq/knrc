@@ -1,12 +1,13 @@
 \subsection{Exercise 1-9}
 
+Copy the program's input to its output, replacing each string of one or more
+blanks, by a single blank.
+
 <<catblanks.c>>=
 <<Include the standard I/O functions.>>
 <<Include the boolean type and values.>>
-@
 
 
-<<catblanks.c>>=
 int main()
 {
     int c;

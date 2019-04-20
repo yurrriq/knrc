@@ -5,35 +5,34 @@
 <<Include the boolean type and values.>>
 @
 
-
+Until the end of the file, count characters by incrementing a \cee{double nc}.
 <<wc.c>>=
 double char_count()
 {
-    double nc;
+    double nc = 0;
 
-    for (nc = 0; getchar() != EOF; ++nc)
-	;
+    while (getchar() != EOF)
+        ++nc;
 
     return nc;
 }
-@ %def char_count
+@
 
 
 \section{Line Counting}
 
+Until the end of the file, count the newline characters.
 <<wc.c>>=
 int line_count()
 {
-    int c, nl;
-
-    nl = 0;
+    int c, nl = 0;
     <<For each character [[c]] until [[EOF]]>>
-	if (<<the character is a newline>>)
-	    ++nl;
+        if (<<the character is a newline>>)
+            ++nl;
 
     return nl;
 }
-@ %def line_count
+@
 
 
 \subsection{Exercise 1-8}
@@ -45,7 +44,7 @@ bool is_whitespace(int c)
 }
 
 
-@ %def is_whitespace
+@
 
 
 <<wc.c>>=
@@ -55,12 +54,12 @@ double ws_count()
     int c = 0;
 
     <<For each character [[c]] until [[EOF]]>>
-	if (is_whitespace(c))
-	    ++ns;
+        if (is_whitespace(c))
+            ++ns;
 
     return ns;
 }
-@ %def ws_count
+@
 
 
 \section{Word Counting}
@@ -68,8 +67,7 @@ double ws_count()
 <<wc.c>>=
 #define IN  1
 #define OUT 0
-@ %def IN
-@ %def OUT
+@
 
 <<wc.c>>=
 int main()
@@ -79,15 +77,15 @@ int main()
     state = OUT;
     nl = nw = nc = 0;
     <<For each character [[c]] until [[EOF]]>> {
-	++nc;
-	if (<<the character is a newline>>)
-	    ++nl;
-	if (<<the character is whitespace>>)
-	    state = OUT;
-	else if (state == OUT) {
-	  state = IN;
-	  ++nw;
-	}
+        ++nc;
+        if (<<the character is a newline>>)
+            ++nl;
+        if (<<the character is whitespace>>)
+            state = OUT;
+        else if (state == OUT) {
+          state = IN;
+          ++nw;
+        }
     }
 
     printf("%7d%8d%8d\n", nl, nw, nc);

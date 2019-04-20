@@ -12,6 +12,7 @@ C_SRCS  := $(addsuffix .c,$(addprefix src/,\
 	charfreq\
 	longestline\
 	longlines\
+	trimlines\
 	))
 LIB_SRCS := $(addprefix src/,$(addsuffix .o,\
 	get_line\

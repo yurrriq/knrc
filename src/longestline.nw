@@ -26,7 +26,7 @@ Define the maximum line length to read into memory.
 #define MAXLINE 80
 
 
-@ %def MAXLINE
+@
 
 
 <<longestline.c>>=
@@ -84,4 +84,4 @@ void copy(char to[], char from[])
 }
 
 
-@ %def copy
+@

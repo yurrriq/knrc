@@ -4,21 +4,17 @@
 
 <<Include the boolean type and values.>>=
 #include <stdbool.h>
-@ %def bool
+@
 
 
 <<Include the standard I/O functions.>>=
 #include <stdio.h>
-@ %def fputs
-@ %def printf
-@ %def putchar
-@ %def puts
-@ %def stdout
+@
 
 
 <<Include the standard string functions.>>=
 #include <string.h>
-@ %def strlen
+@
 
 
 \section{Patterns}

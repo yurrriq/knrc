@@ -2,18 +2,17 @@
 #include <stdbool.h>
 double char_count()
 {
-    double nc;
+    double nc = 0;
 
-    for (nc = 0; getchar() != EOF; ++nc);
+    while (getchar() != EOF)
+        ++nc;
 
     return nc;
 }
 
 int line_count()
 {
-    int c, nl;
-
-    nl = 0;
+    int c, nl = 0;
     while ((c = getchar()) != EOF)
         if (c == '\n')
             ++nl;

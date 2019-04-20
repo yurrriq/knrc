@@ -23,7 +23,7 @@ Define the maximum line length to read into memory.
 #define MAXLINE 57
 
 
-@ %def MAXLINE
+@
 
 Define the minimum line length to be considered long.
 <<longlines.c>>=
@@ -31,7 +31,7 @@ Define the minimum line length to be considered long.
 #define MINLENGTH 54
 
 
-@ %def MINLENGTH
+@
 
 
 <<longlines.c>>=
@@ -42,9 +42,9 @@ int main()
 
     while ((len = get_line(line, MAXLINE)) > 0) {
        if (len > MINLENGTH)
-	   printf("%s", line);
+           printf("%s", line);
        if (len >= MAXLINE && line[MAXLINE - 1] != '\n')
-	    fputs("...\n", stdout);
+            fputs("...\n", stdout);
     }
 
     return 0;
